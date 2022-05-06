@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, SafeAreaView,Image} from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import {
+import { 
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
