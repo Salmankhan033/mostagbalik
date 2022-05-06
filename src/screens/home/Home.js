@@ -5,8 +5,9 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  I18nManager,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {
   heightPercentageToDP as hp,
@@ -17,10 +18,55 @@ import Header from './components/header';
 import Button from '../../../components/Button';
 import Card from './components/card';
 import Swiper from 'react-native-swiper';
+import AboutModal from './components/aboutModal';
+import {useTranslation} from 'react-i18next';
+import RNRestart from 'react-native-restart';
 
-const Home = props => {
+const Home = (props) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const {t, i18n} = useTranslation();
+  const [lng, setLng] = useState('en');
+  const [addlng, setaddLng] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const setLanguage = code => {
+    setLng(code);
+    setaddLng(true);
+    if (code == 'ar') I18nManager.forceRTL(true);
+
+    if (code == 'en') I18nManager.forceRTL(false);
+
+    i18n.changeLanguage(code);
+    RNRestart.Restart();
+    setTimeout(() => {
+      setaddLng(false);
+    }, 1000);
+  };
+
   return (
     <View style={{flex: 1}}>
+      {/* <View style={{justifyContent:'space-around',flexDirection:'row',marginTop:15}}>
+  
+  <TouchableOpacity
+    style={styles.buttonContainer}
+    onPress={() => setLanguage("en")}
+  >
+    <Text style={[styles.elementText,{color:"white",fontSize:17,textTransform:'none'}]}>
+      EN
+    </Text>
+  </TouchableOpacity>
+  <TouchableOpacity
+    style={styles.buttonContainer}
+    onPress={() => setLanguage("ar")}
+  >
+    <Text style={[styles.elementText,{color:"white",fontSize:17,textTransform:'none'}]}>AR</Text>
+  </TouchableOpacity>
+
+
+</View> */}
       <ScrollView>
         <View style={styles.container}>
           <FastImage
@@ -28,21 +74,21 @@ const Home = props => {
             source={require('../../assets/Group.png')}
           />
         </View>
-        <Header />
+        <Header onPress={toggleModal} />
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-end',
             paddingVertical: 15,
           }}>
-          <Text style={styles.title}>What We Provide At Mostagbalik</Text>
+          <Text style={styles.title}>{t('common:Provide_Mostagbalik')}</Text>
           <FastImage
             style={styles.img}
             source={require('../../assets/rowsImgLeft.png')}
           />
         </View>
         <Card
-          title={'Abroad Studies'}
+          title={t("common:Abroad_Studies")}
           description={
             'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
           }
@@ -147,6 +193,7 @@ const Home = props => {
           onPress={() => props.navigation.navigate('BookAppointment')}
         />
       </View>
+      <AboutModal isVisible={isModalVisible} onPress={toggleModal} />
     </View>
   );
 };
