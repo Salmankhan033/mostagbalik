@@ -10,11 +10,11 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View style={{flex: 1, marginTop: 30}}>
-      {/* <NavigationContainer>
+    <View style={{flex: 1, marginTop: 30, backgroundColor: 'white'}}>
+      <NavigationContainer>
         <Navigations />
-      </NavigationContainer> */}
-      <BookAppointment />
+      </NavigationContainer>
+      {/* <BookAppointment /> */}
     </View>
   );
 };

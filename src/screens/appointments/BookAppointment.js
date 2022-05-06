@@ -10,8 +10,9 @@ import FastImage from 'react-native-fast-image';
 
 import * as Colors from '../../constants/colors';
 import * as Typography from '../../constants/typography';
+import Button from '../../../components/Button';
 
-const BookAppointment = () => {
+const BookAppointment = props => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
   const data = [
     {time: '08:30'},
@@ -49,44 +50,52 @@ const BookAppointment = () => {
     );
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.CalendarContainer}>
-        <Text style={styles.headerTxt}>SELECT DATE</Text>
-        <Calendar
-          // Initially visible month. Default = now
-          current={new Date()}
-          // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-          minDate={'2012-05-10'}
-          // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-          maxDate={'2080-05-30'}
-          // Handler which gets executed on day press. Default = undefined
-          onDayPress={day => {
-            console.log('selected day', day);
-          }}
-          // Handler which gets executed on day long press. Default = undefined
-          onDayLongPress={day => {
-            console.log('selected day', day);
-          }}
-          // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+    <View style={{flex: 1, backgroundColor: Colors.White}}>
+      <View style={styles.container}>
+        <View style={styles.CalendarContainer}>
+          <Text style={styles.headerTxt}>SELECT DATE</Text>
+          <Calendar
+            // Initially visible month. Default = now
+            current={new Date()}
+            // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+            minDate={'2012-05-10'}
+            // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+            maxDate={'2080-05-30'}
+            // Handler which gets executed on day press. Default = undefined
+            onDayPress={day => {
+              console.log('selected day', day);
+            }}
+            // Handler which gets executed on day long press. Default = undefined
+            onDayLongPress={day => {
+              console.log('selected day', day);
+            }}
+            // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
 
-          // Handler which gets executed when visible month changes in calendar. Default = undefined
-          onMonthChange={month => {
-            console.log('month changed', month);
-          }}
-          // Enable the option to swipe between months. Default = false
-          enableSwipeMonths={true}
-        />
+            // Handler which gets executed when visible month changes in calendar. Default = undefined
+            onMonthChange={month => {
+              console.log('month changed', month);
+            }}
+            // Enable the option to swipe between months. Default = false
+            enableSwipeMonths={true}
+          />
+        </View>
+        <View style={styles.BottomContainer}>
+          <Text style={styles.headerTxt}>SELECT DATE</Text>
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            key={index => index}
+            keyExtractor={(item, index) => index}
+            ItemSeparatorComponent={separator}
+            extraData={item => '_' + item.selected}
+            numColumns={4}
+          />
+        </View>
       </View>
-      <View style={styles.BottomContainer}>
-        <Text style={styles.headerTxt}>SELECT DATE</Text>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          key={index => index}
-          keyExtractor={(item, index) => index}
-          ItemSeparatorComponent={separator}
-          extraData={item => '_' + item.selected}
-          numColumns={4}
+      <View style={styles.btnContainer}>
+        <Button
+          title={'Next'}
+          onPress={() => props.navigation.navigate('NextAppointment')}
         />
       </View>
     </View>
@@ -94,9 +103,11 @@ const BookAppointment = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    marginTop: hp('5%'),
+    marginTop: hp('2%'),
     width: wp('92%'),
     alignSelf: 'center',
+
+    backgroundColor: Colors.White,
   },
   CalendarContainer: {
     height: hp('45%'),
@@ -121,6 +132,13 @@ const styles = StyleSheet.create({
   BottomContainer: {
     width: wp('92%'),
     alignSelf: 'center',
+  },
+  btnContainer: {
+    paddingHorizontal: 15,
+    position: 'absolute',
+    bottom: 20,
+    left: 10,
+    right: 10,
   },
 });
 export default BookAppointment;

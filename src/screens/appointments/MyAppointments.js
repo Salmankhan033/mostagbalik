@@ -37,7 +37,7 @@ const MyAppointments = () => {
     );
   };
   return (
-    <View>
+    <View style={{backgroundColor: 'white'}}>
       <SwitchButton
         defaultSelected={upComming}
         swicthSelected={archive}
