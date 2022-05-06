@@ -7,7 +7,7 @@ import {
   } from 'react-native-responsive-screen';
 import FastImage from 'react-native-fast-image';
 
-const Header = () => {
+const Header = ({onPress}) => {
   return (
     <View style={styles.container}>
     <View style={{flexDirection:'row'}}>
@@ -24,7 +24,7 @@ const Header = () => {
           place for higher education.
         </Text>
       </View>
-      <TouchableOpacity style={styles.seeMore}>
+      <TouchableOpacity style={styles.seeMore} onPress={onPress}>
         <Text style={styles.seeMoreText}>{"See More"}</Text>
       </TouchableOpacity>
     </View>
