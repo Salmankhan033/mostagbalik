@@ -4,7 +4,14 @@ import React from 'react';
 const AboutUs = () => {
   return (
     <View>
-      <Text>AboutUs</Text>
+      <SwitchButton
+        defaultSelected={dailyCalendar}
+        swicthSelected={threeDayCalendar}
+        toggleSwitch={() => fetchDailyCalendar()}
+        switchToggle={() => fetchThreeDayCalendar()}
+        defaultSelectedText={'Daily'}
+        swicthSelectedText={'3 Day'}
+      />
     </View>
   );
 };
