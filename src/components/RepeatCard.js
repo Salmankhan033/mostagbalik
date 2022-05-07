@@ -23,7 +23,7 @@ const InputWithLabels = props => {
 
           {props?.removeIcons ? null : (
             <FastImage
-              source={require('../assests/down_arrow.png')}
+              source={require('../assets/down_arrow.png')}
               resizeMode="contain"
               style={styles.iconStyle}
             />

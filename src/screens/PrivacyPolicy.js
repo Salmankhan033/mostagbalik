@@ -6,7 +6,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-const AboutUs = () => {
+const PrivacyPolicy = () => {
   return (
     <View style={styles.container}>
       <View style={styles.midContainer}>
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AboutUs;
+export default PrivacyPolicy;

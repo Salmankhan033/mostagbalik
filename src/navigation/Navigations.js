@@ -1,8 +1,12 @@
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import Onboarding from '../screens/getStarted/onboarding';
 import Home from '../screens/home/Home';
 import BookAppointment from '../screens/appointments/BookAppointment';
@@ -10,15 +14,36 @@ import MyAppointments from '../screens/appointments/MyAppointments';
 import NextBookAppointments from '../screens/appointments/NextBookAppointments';
 import OTPVerification from '../screens/OTPVerification';
 import SplashScreen from './SplashScreen';
-import '../constants/DCSLocalize'
+import '../constants/DCSLocalize';
+import AppointmentsConfirmation from '../screens/AppointmentsConfirmation';
+import TermCondition from '../screens/TermCondition';
+import PrivacyPolicy from '../screens/PrivacyPolicy';
+import ChangeLanguage from '../screens/ChangeLanguage';
+import ChangeNumber from '../screens/ChangeNumber';
+import AboutUs from '../screens/AboutUs';
+import FastImage from 'react-native-fast-image';
+
+import * as Colors from '../constants/colors';
+import * as Typography from '../constants/typography';
+import CustomDrawer from '../components/CustomDrawer';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Mostagbalik" component={Home} 
-         options={{
+    <Drawer.Navigator
+      drawerContent={props => <CustomDrawer {...props} />}
+      screenOptions={{
+        drawerLabelStyle: {
+          marginLeft: hp('-2%'),
+          fontSize: Typography.FONT_SIZE_16,
+          color: Colors.light_gray2,
+        },
+      }}>
+      <Drawer.Screen
+        name="Mostagbalik"
+        component={Home}
+        options={{
           headerStyle: {
             backgroundColor: '#65ABEF',
           },
@@ -26,9 +51,95 @@ function MyDrawer() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+
+          drawerIcon: () => (
+            <FastImage
+              style={styles.icon}
+              resizeMode={'contain'}
+              source={require('../assets/home.png')}
+              tintColor={Colors.light_gray2}
+            />
+          ),
         }}
       />
-      {/* <Drawer.Screen name="Article" component={AboutUs} /> */}
+      <Drawer.Screen
+        name="My Appointments"
+        component={MyAppointments}
+        options={{
+          drawerIcon: () => (
+            <FastImage
+              style={styles.icon}
+              resizeMode={'contain'}
+              source={require('../assets/calendar.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Change Number"
+        component={ChangeNumber}
+        options={{
+          drawerIcon: () => (
+            <FastImage
+              style={{width: wp('4%'), height: hp('4%')}}
+              resizeMode={'contain'}
+              source={require('../assets/mobile.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="About Us"
+        component={AboutUs}
+        options={{
+          drawerIcon: () => (
+            <FastImage
+              style={styles.icon}
+              resizeMode={'contain'}
+              source={require('../assets/about_us.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Terms & Conditions"
+        component={TermCondition}
+        options={{
+          drawerIcon: () => (
+            <FastImage
+              style={styles.icon}
+              resizeMode={'contain'}
+              source={require('../assets/term_condition.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Privacy Policy"
+        component={PrivacyPolicy}
+        options={{
+          drawerIcon: () => (
+            <FastImage
+              style={styles.icon}
+              resizeMode={'contain'}
+              source={require('../assets/privacy.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Change Language"
+        component={ChangeLanguage}
+        options={{
+          drawerIcon: () => (
+            <FastImage
+              style={styles.icon}
+              resizeMode={'contain'}
+              source={require('../assets/calendar.png')}
+            />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -36,7 +147,7 @@ function MyDrawer() {
 const Navigations = () => {
   return (
     <Stack.Navigator initialRouteName="SplashScreen">
-    <Stack.Screen
+      <Stack.Screen
         name="SplashScreen"
         component={SplashScreen}
         options={{headerShown: false}}
@@ -80,15 +191,26 @@ const Navigations = () => {
       <Stack.Screen
         name="NextAppointment"
         component={NextBookAppointments}
-        options={{title: 'My Appointment'}}
+        options={{title: 'Book Appointment'}}
       />
       <Stack.Screen
         name="OTPVerification"
         component={OTPVerification}
         options={{title: null}}
       />
+      <Stack.Screen
+        name="AppointmentsConfirmation"
+        component={AppointmentsConfirmation}
+        options={{title: 'Appointment Confirmation'}}
+      />
     </Stack.Navigator>
   );
 };
+const styles = StyleSheet.create({
+  icon: {
+    width: wp('5%'),
+    height: hp('5%'),
+  },
+});
 
 export default Navigations;

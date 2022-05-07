@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
 import React from 'react';
-import FastImage from 'react-native-fast-image';
+
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,

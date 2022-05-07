@@ -17,7 +17,7 @@ const MyAppointmentCard = () => {
         <View style={styles.midView}>
           <FastImage
             style={styles.icon}
-            source={require('../../assests/calendar.png')}
+            source={require('../../assets/calendar.png')}
             tintColor={Colors.lightGray}
           />
           <Text style={styles.dateText}>2 April 2022</Text>
@@ -25,7 +25,7 @@ const MyAppointmentCard = () => {
         <View style={styles.midView}>
           <FastImage
             style={styles.icon}
-            source={require('../../assests/watch.png')}
+            source={require('../../assets/watch.png')}
             tintColor={Colors.lightGray}
           />
           <Text style={styles.dateText}>10:30</Text>

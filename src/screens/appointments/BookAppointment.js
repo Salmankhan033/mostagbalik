@@ -6,7 +6,6 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import FastImage from 'react-native-fast-image';
 
 import * as Colors from '../../constants/colors';
 import * as Typography from '../../constants/typography';

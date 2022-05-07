@@ -12,17 +12,40 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import FastImage from 'react-native-fast-image';
+
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import * as Colors from '../../constants/colors';
 import * as Typography from '../../constants/typography';
 import Button from '../../../components/Button';
 import RepeatCard from '../../components/RepeatCard';
+import ModalListView from '../../components/ModalListView';
+import RenderCard from '../../components/RenderCard';
 
 const NextBookAppointments = props => {
+  let type = props.route?.params ? props.route.params.type : '';
   const [appointmentsVisibility, setAppointmentsVisibility] = useState(false);
   const [mobileNo, setMobileNo] = useState('');
+  const [purpose, setPurpose] = useState('Abroad Studies');
+  const data = [
+    {title: 'Abroad Studies'},
+    {title: 'Abroad Studies 1'},
+    {title: 'Abroad Studies 2'},
+    {title: 'Abroad Studies 3'},
+    {title: 'Abroad Studies 4'},
+    {title: 'Abroad Studies 5'},
+    {title: 'Abroad Studies 6'},
+    {title: 'Abroad Studies 7'},
+    {title: 'Abroad Studies 8'},
+    {title: 'Abroad Studies 9'},
+    {title: 'Abroad Studies 10'},
+  ];
+  const onPurposeData = item => {
+    setPurpose(item);
+
+    setAppointmentsVisibility(false);
+  };
+
   return (
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
       <View style={styles.mainContainer}>
@@ -33,23 +56,49 @@ const NextBookAppointments = props => {
             lable="Start Time"
             onPress={() => setAppointmentsVisibility(true)}
             icon={true}
-            bodyText={'Abroad Studies'}
+            bodyText={purpose}
           />
+          {appointmentsVisibility == true && (
+            <ModalListView
+              data={data}
+              renderItem={item => (
+                <RenderCard
+                  realData={purpose}
+                  renderData={item.title}
+                  selectedData={onPurposeData}
+                  date={data}
+                  typeCB={'PURPOSE OF VISIT'}
+                />
+              )}
+              title={'PURPOSE OF VISIT'}
+              visiblity={appointmentsVisibility}
+              changeVisibility={() => setAppointmentsVisibility(false)}
+            />
+          )}
+
           <Text style={styles.txt}>NOTE</Text>
           <TextInput multiline numberOfLines={4} style={styles.input} />
-          <Text style={styles.txt}>MOBILE NUMBER</Text>
-          <TextInput
-            placeholder="MOBILE NUMBER"
-            style={styles.inputs}
-            keyboardType={'phone-pad'}
-            value={mobileNo}
-            onChangeText={text => setMobileNo(text)}
-          />
+          {type ? null : (
+            <>
+              <Text style={styles.txt}>MOBILE NUMBER</Text>
+              <TextInput
+                placeholder="MOBILE NUMBER"
+                style={styles.inputs}
+                keyboardType={'phone-pad'}
+                value={mobileNo}
+                onChangeText={text => setMobileNo(text)}
+              />
+            </>
+          )}
         </View>
         <View style={styles.btnContainer}>
           <Button
-            title={'CONTINUE'}
-            onPress={() => props.navigation.navigate('OTPVerification')}
+            title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
+            onPress={() =>
+              type
+                ? props.navigation.navigate('AppointmentsConfirmation')
+                : props.navigation.navigate('OTPVerification')
+            }
           />
         </View>
       </View>
