@@ -1,8 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import * as Typography from '../../../constants/typography';
+import * as Colors from '../../../constants/colors';
 
-const Card = ({title,description}) => {
+const Card = ({title, description}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 15,
     shadowColor: '#000',
-    marginHorizontal:10,
+    marginHorizontal: 10,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -26,21 +27,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    marginVertical:15,
-    padding:15
+    marginVertical: 15,
+    padding: 15,
   },
   title: {
     alignSelf: 'center',
     fontSize: Typography.FONT_SIZE_18,
     fontWeight: '600',
     lineHeight: 24,
-    marginBottom:5
+    marginBottom: 5,
   },
   description: {
     fontSize: Typography.FONT_SIZE_16,
     alignSelf: 'center',
     fontWeight: '400',
     lineHeight: 24,
-    color:"#999999"
+    color: Colors.Gray44,
+    textAlign: 'center',
   },
 });

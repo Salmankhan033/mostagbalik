@@ -28,7 +28,7 @@ const Header = ({onPress}) => {
         </Text>
       </View>
       <TouchableOpacity style={styles.seeMore} onPress={onPress}>
-        <Text style={styles.seeMoreText}>{'See More'}</Text>
+        <Text style={styles.seeMoreText}>{'Read More'}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   bottom: {
     borderBottomColor: '#65ABEF',
-    borderBottomWidth: 2,
+    borderBottomWidth: hp('0.1%'),
     width: wp('20%'),
     alignSelf: 'center',
     borderRadius: 3,

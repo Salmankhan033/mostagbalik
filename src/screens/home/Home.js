@@ -14,6 +14,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import * as Typography from '../../constants/typography';
+import * as Colors from '../../constants/colors';
 import Header from './components/header';
 import Button from '../../../components/Button';
 import Card from './components/card';
@@ -22,7 +23,7 @@ import AboutModal from './components/aboutModal';
 import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
 
-const Home = (props) => {
+const Home = props => {
   const [isModalVisible, setModalVisible] = useState(false);
   const {t, i18n} = useTranslation();
   const [lng, setLng] = useState('en');
@@ -67,45 +68,53 @@ const Home = (props) => {
 
 
 </View> */}
-      <ScrollView>
-        <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <View>
           <FastImage
             style={styles.headerImg}
             source={require('../../assets/Group.png')}
           />
         </View>
         <Header onPress={toggleModal} />
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            paddingVertical: 15,
-          }}>
-          <Text style={styles.title}>{t('common:Provide_Mostagbalik')}</Text>
-          <FastImage
-            style={styles.img}
-            source={require('../../assets/rowsImgLeft.png')}
+        <View style={{backgroundColor: '#f7fbfe', paddingBottom: hp('5%')}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              paddingVertical: 15,
+            }}>
+            <View>
+              <Text style={styles.title}>
+                {t('common:Provide_Mostagbalik')}
+              </Text>
+
+              <View style={styles.bottom} />
+            </View>
+            <FastImage
+              style={styles.img}
+              resizeMode={'contain'}
+              source={require('../../assets/rowsImgLeft.png')}
+            />
+          </View>
+          <Card
+            title={t('common:Abroad_Studies')}
+            description={
+              'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
+            }
+          />
+          <Card
+            title={'Further Education'}
+            description={
+              'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
+            }
+          />
+          <Card
+            title={'Expert Consultancy'}
+            description={
+              'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
+            }
           />
         </View>
-        <Card
-          title={t("common:Abroad_Studies")}
-          description={
-            'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
-          }
-        />
-        <Card
-          title={'Further Education'}
-          description={
-            'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
-          }
-        />
-        <Card
-          title={'Expert Consultancy'}
-          description={
-            'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
-          }
-        />
-
         <View>
           <View
             style={{
@@ -115,12 +124,14 @@ const Home = (props) => {
             }}>
             <FastImage
               style={styles.img}
+              resizeMode={'contain'}
               source={require('../../assets/rowsImg.png')}
             />
             <View style={{paddingHorizontal: '20%'}}>
               <Text style={styles.aboutUsTitle}>
                 {'What Our Client Say About Us.'}
               </Text>
+              <View style={styles.bottom} />
             </View>
             <View style={{}}></View>
             <Swiper
@@ -137,7 +148,7 @@ const Home = (props) => {
                     marginLeft: 3,
                     marginRight: 3,
                     marginTop: 3,
-                    marginBottom: 3,
+                    marginBottom: hp('1%'),
                   }}
                 />
               }
@@ -151,7 +162,7 @@ const Home = (props) => {
                     marginLeft: 3,
                     marginRight: 3,
                     marginTop: 3,
-                    marginBottom: 3,
+                    marginBottom: hp('1%'),
                   }}
                 />
               }>
@@ -202,7 +213,7 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    // flex:1
+    backgroundColor: Colors.White,
   },
   headerImg: {
     height: hp('25%'),
@@ -214,6 +225,14 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 10,
     right: 10,
+  },
+  bottom: {
+    borderBottomColor: '#65ABEF',
+    borderBottomWidth: hp('0.1%'),
+    width: wp('20%'),
+    alignSelf: 'center',
+    borderRadius: 3,
+    marginVertical: 5,
   },
   title: {
     fontSize: Typography.FONT_SIZE_24,

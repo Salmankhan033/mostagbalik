@@ -11,17 +11,21 @@ const AboutModal = ({isVisible, onPress}) => {
     <Modal
       style={{
         margin: 0,
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         top: deviceHeight / 2,
-        borderTopRightRadius:20,
-        borderTopLeftRadius:20
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
       }}
       isVisible={isVisible}
       animationIn={'slideInUp'}
       animationOut={'slideOutDown'}
       deviceHeight={deviceHeight / 2}
       backdropOpacity={0.34}>
-      <View style={{flex: 1, padding: 20}}>
+      <View
+        style={{
+          flex: 1,
+          padding: 20,
+        }}>
         <View
           style={{
             flexDirection: 'row',

@@ -8,57 +8,59 @@ import {
 import SwiperComponent from '../../../components/swiper';
 import Swiper from 'react-native-swiper';
 import Button from '../../../components/Button';
+import * as Colors from '../../constants/colors';
 
 const Onboarding = ({navigation}) => {
   return (
-    <View style={{flex: 1}}>
-      <StatusBar
-        barStyle="dark-content"
-        hidden={false}
-        backgroundColor="#0B5DA6"
-        translucent={true}
-      />
-      <View style={styles.wrapper}>
-        <Swiper
-          //   horizontal={true}
-          // style={styles.wrapper}
-          // showsButtons={true}
-          // showsPagination={true}
-          // showsPaginationStyle={{height: 20, width: 30}}
-          dotColor={'red'}
-          activeDotColor={'blue'}
-          dot={
-            <View
-              style={{
-                backgroundColor: 'rgba(0,0,0,.2)',
-                width: 22,
-                height: 4,
-                borderRadius: 2,
-                marginLeft: 3,
-                marginRight: 3,
-                marginTop: 3,
-                marginBottom: 3,
-              }}
-            />
-          }
-          activeDot={
-            <View
-              style={{
-                backgroundColor: '#007aff',
-                width: 22,
-                height: 4,
-                borderRadius: 2,
-                marginLeft: 3,
-                marginRight: 3,
-                marginTop: 3,
-                marginBottom: 3,
-              }}
-            />
-          }>
-          <SwiperComponent />
-          <SwiperComponent />
-          <SwiperComponent />
-        </Swiper>
+    <SafeAreaView style={{backgroundColor: Colors.Curious_Blue}}>
+      <View style={{backgroundColor: Colors.White}}>
+        <StatusBar
+          barStyle="dark-content"
+          hidden={false}
+          backgroundColor={Colors.Curious_Blue}
+          translucent={true}
+        />
+        <View style={styles.wrapper}>
+          <Swiper
+            //   horizontal={true}
+            style={styles.wrapper}
+            // showsButtons={true}
+            // showsPagination={true}
+            // showsPaginationStyle={{height: 20, width: 30}}
+
+            dotColor={'red'}
+            activeDotColor={'blue'}
+            dot={
+              <View
+                style={{
+                  backgroundColor: 'rgba(0,0,0,.2)',
+                  width: 22,
+                  height: 3,
+                  borderRadius: 2,
+                  marginLeft: 3,
+                  marginRight: 3,
+                  marginBottom: hp('2%'),
+                }}
+              />
+            }
+            activeDot={
+              <View
+                style={{
+                  backgroundColor: '#007aff',
+                  width: 22,
+                  height: 4,
+                  borderRadius: 2,
+                  marginLeft: 3,
+                  marginRight: 3,
+                  marginBottom: hp('2%'),
+                }}
+              />
+            }>
+            <SwiperComponent />
+            <SwiperComponent />
+            <SwiperComponent />
+          </Swiper>
+        </View>
       </View>
       <View style={styles.buttonContainer}>
         <Button
@@ -67,7 +69,7 @@ const Onboarding = ({navigation}) => {
           rightIcon={require('../../assets/leftArrow.png')}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -75,7 +77,8 @@ export default Onboarding;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: hp('90%'),
+    height: hp('80%'),
+    backgroundColor: Colors.White,
   },
   buttonContainer: {
     paddingHorizontal: 20,
