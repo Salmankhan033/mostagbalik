@@ -32,10 +32,7 @@ const ChangeNumber = () => {
         />
       </View>
       <View style={styles.btnContainer}>
-        <Button
-          title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
-          onPress={() => {}}
-        />
+        <Button title={'Update'} onPress={() => {}} />
       </View>
     </View>
   );
@@ -55,7 +52,7 @@ const styles = StyleSheet.create({
     height: hp('6%'),
     width: wp('92%'),
     alignSelf: 'center',
-    borderColor: Colors.light_gray2,
+    borderColor: Colors.selectedButton,
     borderWidth: hp('0.1%'),
     padding: 10,
     borderRadius: hp('0.5%'),

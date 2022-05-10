@@ -9,7 +9,7 @@ import {
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
-
+import HeaderComponent from '../components/headerComponent';
 const OTPVerification = props => {
   const [isValidRequest, setIsValidRequest] = useState(false);
   const [code, setCode] = useState('');
@@ -32,6 +32,7 @@ const OTPVerification = props => {
 
   return (
     <View style={{backgroundColor: Colors.White, flex: 1}}>
+      <HeaderComponent navigation={props.navigation} title={''} />
       <View style={styles.headerTextView}>
         <Text style={styles.headerText}>Verification Code</Text>
         <Text style={styles.bodyText}>
@@ -41,7 +42,7 @@ const OTPVerification = props => {
 
       <OTPInputView
         style={styles.otpInput}
-        pinCount={5}
+        pinCount={4}
         code={code}
         onCodeChanged={code => {
           setCode(code);
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
     fontWeight: Typography.FONT_WEIGHT_BOLD,
     textAlign: 'center',
     height: hp('6%'),
+    color: Colors.Black,
   },
   bodyText: {
     textAlign: 'center',
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     height: hp('6%'),
   },
   otpInput: {
-    width: wp('92%'),
+    width: wp('60%'),
     height: hp('10%'),
     alignSelf: 'center',
   },

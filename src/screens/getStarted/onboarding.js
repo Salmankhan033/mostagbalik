@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from 'react-native';
 import React from 'react';
 
 import {
@@ -48,13 +55,13 @@ export default Onboarding;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: hp('82%'),
+    height: Platform.OS == 'ios' ? hp('82%') : hp('92%'),
     backgroundColor: Colors.White,
   },
   buttonContainer: {
     paddingHorizontal: 20,
     position: 'absolute',
-    bottom: 35,
+    bottom: Platform.OS == 'ios' ? 35 : 5,
     right: 10,
     left: 10,
   },

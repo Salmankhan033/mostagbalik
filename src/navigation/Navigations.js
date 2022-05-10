@@ -59,7 +59,6 @@ function MyDrawer() {
         name="My Appointments"
         component={MyAppointments}
         options={{
-          
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -167,27 +166,28 @@ const Navigations = () => {
         component={BookAppointment}
         options={{
           headerShown: false,
-          title: 'Book Appointment'}}
+          title: 'Book Appointment',
+        }}
       />
       <Stack.Screen
         name="MyAppointment"
         component={MyAppointments}
-        options={{title: 'My Appointment'}}
+        options={{headerShown: false, title: 'My Appointment'}}
       />
       <Stack.Screen
         name="NextAppointment"
         component={NextBookAppointments}
-        options={{title: 'Book Appointment'}}
+        options={{headerShown: false, title: 'Book Appointment'}}
       />
       <Stack.Screen
         name="OTPVerification"
         component={OTPVerification}
-        options={{title: null}}
+        options={{headerShown: false, title: null}}
       />
       <Stack.Screen
         name="AppointmentsConfirmation"
         component={AppointmentsConfirmation}
-        options={{title: 'Appointment Confirmation'}}
+        options={{headerShown: false, title: 'Appointment Confirmation'}}
       />
     </Stack.Navigator>
   );

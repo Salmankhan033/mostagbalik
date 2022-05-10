@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 24,
     marginBottom: 5,
+    color: Colors.Black,
   },
   description: {
     fontSize: Typography.FONT_SIZE_16,

@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  SafeAreaView,
+} from 'react-native';
 import React from 'react';
 import * as Typography from '../../../constants/typography';
 import {
@@ -48,6 +55,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '14%',
     marginLeft: 10,
+    color: 'black',
   },
   bottom: {
     borderBottomColor: '#65ABEF',

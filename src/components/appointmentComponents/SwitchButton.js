@@ -19,36 +19,47 @@ const SwitchButton = props => {
       style={
         props.cameFrom ? styles.buttonsContainerForm : styles.buttonsContainer
       }>
-      <View style={styles.buttonWraper}>
-        <TouchableOpacity
-          style={props.defaultSelected ? styles.buttonSelected : styles.button}
-          activeOpacity={0.8}
-          onPress={() => props.toggleSwitch()}>
-          <Text
-            style={
-              props.defaultSelected
-                ? styles.buttonTextSelected
-                : styles.buttonText
-            }>
-            {props.defaultSelectedText}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          width: wp('80%'),
+          alignSelf: 'center',
 
-      <View style={styles.buttonWraper}>
-        <TouchableOpacity
-          style={props.swicthSelected ? styles.buttonSelected : styles.button}
-          activeOpacity={0.8}
-          onPress={() => props.switchToggle()}>
-          <Text
+          justifyContent: 'center',
+        }}>
+        <View style={styles.buttonWraper}>
+          <TouchableOpacity
             style={
-              props.swicthSelected
-                ? styles.buttonTextSelected
-                : styles.buttonText
-            }>
-            {props.swicthSelectedText}
-          </Text>
-        </TouchableOpacity>
+              props.defaultSelected ? styles.buttonSelected : styles.button
+            }
+            activeOpacity={0.8}
+            onPress={() => props.toggleSwitch()}>
+            <Text
+              style={
+                props.defaultSelected
+                  ? styles.buttonTextSelected
+                  : styles.buttonText
+              }>
+              {props.defaultSelectedText}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.buttonWraper}>
+          <TouchableOpacity
+            style={props.swicthSelected ? styles.buttonSelected : styles.button}
+            activeOpacity={0.8}
+            onPress={() => props.switchToggle()}>
+            <Text
+              style={
+                props.swicthSelected
+                  ? styles.buttonTextSelected
+                  : styles.buttonText
+              }>
+              {props.swicthSelectedText}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -79,32 +90,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: wp('42 %'),
-    height: hp('6%'),
+    width: wp('42%'),
+    height: hp('5%'),
     backgroundColor: Colors.White,
     justifyContent: 'center',
     borderRadius: wp('2%'),
-    borderColor: Colors.Black,
+    borderColor: Colors.selectedButton,
     borderWidth: wp('.1%'),
   },
   buttonSelected: {
     width: wp('42%'),
-    height: hp('6%'),
-    backgroundColor: Colors.White,
+    height: hp('5%'),
+    backgroundColor: Colors.selectedButton,
     justifyContent: 'center',
     borderRadius: wp('2%'),
-    borderColor: Colors.Black,
-    borderWidth: wp('.4%'),
   },
   buttonText: {
     alignSelf: 'center',
     color: Colors.Black,
-    fontSize: Typography.FONT_SIZE_12,
+    fontSize: Typography.FONT_SIZE_14,
   },
   buttonTextSelected: {
     alignSelf: 'center',
-    color: Colors.Black,
-    fontSize: Typography.FONT_SIZE_12,
+    color: Colors.Gray44,
+    fontSize: Typography.FONT_SIZE_14,
   },
 });
 

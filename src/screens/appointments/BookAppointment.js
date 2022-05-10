@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import React, {useState} from 'react';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
@@ -32,9 +39,9 @@ const BookAppointment = props => {
     {time: '21:40'},
   ];
   const separator = () => {
-    return <View style={{height: hp('2%')}} />;
+    return <View style={{height: hp('1%')}} />;
   };
-  console.log('xjkasnxkjasbcjksbcs', selectedTimeSlot);
+
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -45,13 +52,25 @@ const BookAppointment = props => {
             : null,
         ]}
         onPress={() => setSelectedTimeSlot(item.time)}>
-        <Text style={styles.timeTxt}>{item.time}</Text>
+        <Text
+          style={[
+            styles.timeTxt,
+            {
+              color:
+                item.time == selectedTimeSlot ? Colors.White : Colors.Gray44,
+            },
+          ]}>
+          {item.time}
+        </Text>
       </TouchableOpacity>
     );
   };
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
-    <HeaderComponent navigation={props.navigation} title={"Book Appointment"}/>
+      <HeaderComponent
+        navigation={props.navigation}
+        title={'Book Appointment'}
+      />
       <View style={styles.container}>
         <View style={styles.CalendarContainer}>
           <Text style={styles.headerTxt}>SELECT DATE</Text>
@@ -81,7 +100,7 @@ const BookAppointment = props => {
           />
         </View>
         <View style={styles.BottomContainer}>
-          <Text style={styles.headerTxt}>SELECT DATE</Text>
+          <Text style={styles.headerTxt}>AVAILABLE SLOTS</Text>
           <FlatList
             data={data}
             renderItem={renderItem}
@@ -107,22 +126,21 @@ const styles = StyleSheet.create({
     marginTop: hp('2%'),
     width: wp('92%'),
     alignSelf: 'center',
-
     backgroundColor: Colors.White,
   },
   CalendarContainer: {
     height: hp('45%'),
   },
   headerTxt: {
-    fontSize: Typography.FONT_SIZE_15,
-    color: Colors.Gray44,
+    fontSize: Typography.FONT_SIZE_14,
+    color: Colors.light_gray2,
   },
   timeView: {
     marginHorizontal: hp('2%'),
     width: wp('15%'),
     alignItems: 'center',
     justifyContent: 'center',
-    height: hp('5%'),
+    height: hp('4%'),
     borderRadius: hp('1%'),
   },
   timeTxt: {
@@ -137,7 +155,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     paddingHorizontal: 15,
     position: 'absolute',
-    bottom: 20,
+    bottom: Platform.OS == 'ios' ? 35 : 5,
     left: 10,
     right: 10,
   },

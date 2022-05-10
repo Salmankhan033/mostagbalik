@@ -49,7 +49,7 @@ const Home = props => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor:Colors.White}}>
+    <View style={{flex: 1, backgroundColor: Colors.White}}>
       {/* <View style={{justifyContent:'space-around',flexDirection:'row',marginTop:15}}>
   
   <TouchableOpacity
@@ -69,13 +69,12 @@ const Home = props => {
 
 
 </View> */}
-<HeaderComponent Home={true} navigation={props.navigation}/>
+      <HeaderComponent Home={true} navigation={props.navigation} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-
-        <View  style={styles.headerImg}>
+        <View style={styles.headerImg}>
           <FastImage
-           style={{height:'100%', width:"100%", }}
+            style={{height: '100%', width: '100%'}}
             source={require('../../assets/Group.png')}
           />
         </View>
@@ -137,21 +136,13 @@ const Home = props => {
               </Text>
               <View style={styles.bottom} />
             </View>
-            <View style={{}}></View>
+
             <Swiper
-              style={{height: hp('35%')}}
+              style={{height: hp('40%')}}
               dotColor={'red'}
               activeDotColor={'blue'}
-              dot={
-                <View
-                  style={styles.dot}
-                />
-              }
-              activeDot={
-                <View
-                  style={styles.activeDot}
-                />
-              }>
+              dot={<View style={styles.dot} />}
+              activeDot={<View style={styles.activeDot} />}>
               <View style={styles.Card}>
                 <Text style={styles.cardDescription}>
                   There are many variations of passages of Lorem Ipsum
@@ -159,7 +150,7 @@ const Home = props => {
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
+                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
               </View>
               <View style={styles.Card}>
                 <Text style={styles.cardDescription}>
@@ -168,7 +159,7 @@ const Home = props => {
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
+                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
               </View>
               <View style={styles.Card}>
                 <Text style={styles.cardDescription}>
@@ -177,7 +168,7 @@ const Home = props => {
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
+                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
               </View>
             </Swiper>
           </View>
@@ -199,11 +190,11 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.White
+    backgroundColor: Colors.White,
   },
   headerImg: {
-    height: hp("22%"),
-    width: wp("100%"),
+    height: hp('22%'),
+    width: wp('100%'),
     // paddingRight:35
   },
   btnContainer: {
@@ -227,6 +218,7 @@ const styles = StyleSheet.create({
     lineHeight: 33,
     textAlign: 'center',
     marginTop: '8%',
+    color: Colors.Black,
     marginRight: 5,
   },
   img: {
@@ -241,6 +233,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '8%',
     // marginRight: 5,
+    color: Colors.Black,
   },
   Card: {
     borderBottomColor: Colors.light_blue,
@@ -271,8 +264,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 24,
     marginTop: 10,
+    color: Colors.Black,
   },
-  dot:{
+  dot: {
     backgroundColor: 'rgba(0,0,0,.2)',
     width: 22,
     height: 3,
@@ -282,7 +276,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginBottom: hp('1%'),
   },
-  activeDot:{
+  activeDot: {
     backgroundColor: Colors.San_Marino,
     width: 22,
     height: 3,
@@ -291,5 +285,5 @@ const styles = StyleSheet.create({
     marginRight: 3,
     marginTop: 3,
     marginBottom: hp('1%'),
-  }
+  },
 });

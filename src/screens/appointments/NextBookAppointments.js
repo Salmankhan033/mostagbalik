@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -21,6 +22,7 @@ import Button from '../../../components/Button';
 import RepeatCard from '../../components/RepeatCard';
 import ModalListView from '../../components/ModalListView';
 import RenderCard from '../../components/RenderCard';
+import HeaderComponent from '../../components/headerComponent';
 
 const NextBookAppointments = props => {
   let type = props.route?.params ? props.route.params.type : '';
@@ -48,6 +50,10 @@ const NextBookAppointments = props => {
 
   return (
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
+      <HeaderComponent
+        navigation={props.navigation}
+        title={'Book Appointment'}
+      />
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <Text style={styles.txt}>PURPOSE OF VISIT</Text>
@@ -91,16 +97,16 @@ const NextBookAppointments = props => {
             </>
           )}
         </View>
-        <View style={styles.btnContainer}>
-          <Button
-            title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
-            onPress={() =>
-              type
-                ? props.navigation.navigate('AppointmentsConfirmation')
-                : props.navigation.navigate('OTPVerification')
-            }
-          />
-        </View>
+      </View>
+      <View style={styles.btnContainer}>
+        <Button
+          title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
+          onPress={() =>
+            type
+              ? props.navigation.navigate('AppointmentsConfirmation')
+              : props.navigation.navigate('OTPVerification')
+          }
+        />
       </View>
     </KeyboardAwareScrollView>
   );
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
   container: {
     width: wp('92%'),
 
-    height: hp('80%'),
+    height: hp('91%'),
   },
   input: {
     height: hp('20%'),
@@ -122,6 +128,8 @@ const styles = StyleSheet.create({
     borderWidth: hp('0.1%'),
     padding: 10,
     borderRadius: hp('1%'),
+    textAlign: 'left',
+    textAlignVertical: 'top',
   },
   inputs: {
     height: hp('6%'),
@@ -139,7 +147,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     paddingHorizontal: 15,
     position: 'absolute',
-    bottom: 20,
+    bottom: Platform.OS == 'ios' ? 35 : 1,
     left: 10,
     right: 10,
   },
