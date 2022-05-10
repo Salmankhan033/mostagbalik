@@ -22,6 +22,7 @@ import Swiper from 'react-native-swiper';
 import AboutModal from './components/aboutModal';
 import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
+import HeaderComponent from '../../components/headerComponent';
 
 const Home = props => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -48,7 +49,7 @@ const Home = props => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor:Colors.White}}>
       {/* <View style={{justifyContent:'space-around',flexDirection:'row',marginTop:15}}>
   
   <TouchableOpacity
@@ -68,10 +69,13 @@ const Home = props => {
 
 
 </View> */}
-      <ScrollView style={styles.container}>
-        <View>
+<HeaderComponent Home={true} navigation={props.navigation}/>
+
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+
+        <View  style={styles.headerImg}>
           <FastImage
-            style={styles.headerImg}
+           style={{height:'100%', width:"100%", }}
             source={require('../../assets/Group.png')}
           />
         </View>
@@ -140,30 +144,12 @@ const Home = props => {
               activeDotColor={'blue'}
               dot={
                 <View
-                  style={{
-                    backgroundColor: 'rgba(0,0,0,.2)',
-                    width: 22,
-                    height: 4,
-                    borderRadius: 2,
-                    marginLeft: 3,
-                    marginRight: 3,
-                    marginTop: 3,
-                    marginBottom: hp('1%'),
-                  }}
+                  style={styles.dot}
                 />
               }
               activeDot={
                 <View
-                  style={{
-                    backgroundColor: '#007aff',
-                    width: 22,
-                    height: 4,
-                    borderRadius: 2,
-                    marginLeft: 3,
-                    marginRight: 3,
-                    marginTop: 3,
-                    marginBottom: hp('1%'),
-                  }}
+                  style={styles.activeDot}
                 />
               }>
               <View style={styles.Card}>
@@ -173,7 +159,7 @@ const Home = props => {
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>Abdullah Ahmad</Text>
+                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
               </View>
               <View style={styles.Card}>
                 <Text style={styles.cardDescription}>
@@ -182,7 +168,7 @@ const Home = props => {
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>Abdullah Ahmad</Text>
+                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
               </View>
               <View style={styles.Card}>
                 <Text style={styles.cardDescription}>
@@ -191,7 +177,7 @@ const Home = props => {
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>Abdullah Ahmad</Text>
+                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
               </View>
             </Swiper>
           </View>
@@ -213,16 +199,17 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.White,
+    backgroundColor: Colors.White
   },
   headerImg: {
-    height: hp('25%'),
-    width: wp('100%'),
+    height: hp("22%"),
+    width: wp("100%"),
+    // paddingRight:35
   },
   btnContainer: {
     paddingHorizontal: 15,
     position: 'absolute',
-    bottom: 20,
+    bottom: 25,
     left: 10,
     right: 10,
   },
@@ -256,9 +243,10 @@ const styles = StyleSheet.create({
     // marginRight: 5,
   },
   Card: {
-    backgroundColor: '#fff',
+    borderBottomColor: Colors.light_blue,
+    backgroundColor: Colors.White,
+    shadowColor: Colors.Black,
     borderRadius: 15,
-    shadowColor: '#000',
     marginHorizontal: 10,
     shadowOffset: {
       width: 0,
@@ -269,7 +257,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 15,
     padding: 15,
-    borderBottomColor: '#0B5DA6',
     borderBottomWidth: 8,
   },
   cardDescription: {
@@ -285,4 +272,24 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: 10,
   },
+  dot:{
+    backgroundColor: 'rgba(0,0,0,.2)',
+    width: 22,
+    height: 3,
+    borderRadius: 2,
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 3,
+    marginBottom: hp('1%'),
+  },
+  activeDot:{
+    backgroundColor: Colors.San_Marino,
+    width: 22,
+    height: 3,
+    borderRadius: 2,
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 3,
+    marginBottom: hp('1%'),
+  }
 });

@@ -9,15 +9,15 @@ import * as Typography from './../src/constants/typography';
 import * as Colors from './../src/constants/colors';
 const SwiperComponent = () => {
   return (
-    <SafeAreaView>
-      <View style={styles.wrapper}>
+    // <SafeAreaView>
+      <View style={{ backgroundColor:Colors.White}}>
         <FastImage
           style={styles.img}
-          source={require('./../src/assets/image.png')}
+          source={require('./../src/assets/1.png')}
         />
         <View style={styles.titleContainer}>
           <Text style={styles.title}>
-            Get your educational consultancy with us
+            {"Get your educational consultancy with us"}
           </Text>
         </View>
         <View style={styles.titleContainer}>
@@ -27,7 +27,7 @@ const SwiperComponent = () => {
           </Text>
         </View>
       </View>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 };
 
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     color: Colors.Black,
+    marginTop:10
   },
   description: {
     fontSize: Typography.FONT_SIZE_14,

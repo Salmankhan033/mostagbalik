@@ -10,6 +10,7 @@ import {
 import * as Colors from '../../constants/colors';
 import * as Typography from '../../constants/typography';
 import Button from '../../../components/Button';
+import HeaderComponent from '../../components/headerComponent';
 
 const BookAppointment = props => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
@@ -50,6 +51,7 @@ const BookAppointment = props => {
   };
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
+    <HeaderComponent navigation={props.navigation} title={"Book Appointment"}/>
       <View style={styles.container}>
         <View style={styles.CalendarContainer}>
           <Text style={styles.headerTxt}>SELECT DATE</Text>

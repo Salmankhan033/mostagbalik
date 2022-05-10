@@ -44,14 +44,7 @@ function MyDrawer() {
         name="Mostagbalik"
         component={Home}
         options={{
-          headerStyle: {
-            backgroundColor: '#65ABEF',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -66,6 +59,7 @@ function MyDrawer() {
         name="My Appointments"
         component={MyAppointments}
         options={{
+          
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -161,16 +155,6 @@ const Navigations = () => {
         name="Home"
         component={Home}
         options={{headerShown: false}}
-        // options={{
-        //   // title: 'My home',
-        //   headerStyle: {
-        //     backgroundColor: '#f4511e',
-        //   },
-        //   headerTintColor: '#fff',
-        //   headerTitleStyle: {
-        //     fontWeight: 'bold',
-        //   },
-        // }}
       />
 
       <Stack.Screen
@@ -181,7 +165,9 @@ const Navigations = () => {
       <Stack.Screen
         name="BookAppointment"
         component={BookAppointment}
-        options={{title: 'Book Appointment'}}
+        options={{
+          headerShown: false,
+          title: 'Book Appointment'}}
       />
       <Stack.Screen
         name="MyAppointment"

@@ -8,10 +8,11 @@ import * as Typography from '../../../constants/typography';
 
 const AboutModal = ({isVisible, onPress}) => {
   return (
+    <View>
     <Modal
       style={{
         margin: 0,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         top: deviceHeight / 2,
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
@@ -25,6 +26,8 @@ const AboutModal = ({isVisible, onPress}) => {
         style={{
           flex: 1,
           padding: 20,
+          borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
         }}>
         <View
           style={{
@@ -52,6 +55,7 @@ const AboutModal = ({isVisible, onPress}) => {
         </Text>
       </View>
     </Modal>
+    </View>
   );
 };
 

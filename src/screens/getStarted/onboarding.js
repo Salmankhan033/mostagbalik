@@ -12,8 +12,8 @@ import * as Colors from '../../constants/colors';
 
 const Onboarding = ({navigation}) => {
   return (
-    <SafeAreaView style={{backgroundColor: Colors.Curious_Blue}}>
-      <View style={{backgroundColor: Colors.White}}>
+    <View style={{flex: 1, backgroundColor: Colors.White}}>
+      <View>
         <StatusBar
           barStyle="dark-content"
           hidden={false}
@@ -22,40 +22,11 @@ const Onboarding = ({navigation}) => {
         />
         <View style={styles.wrapper}>
           <Swiper
-            //   horizontal={true}
             style={styles.wrapper}
-            // showsButtons={true}
-            // showsPagination={true}
-            // showsPaginationStyle={{height: 20, width: 30}}
-
             dotColor={'red'}
             activeDotColor={'blue'}
-            dot={
-              <View
-                style={{
-                  backgroundColor: 'rgba(0,0,0,.2)',
-                  width: 22,
-                  height: 3,
-                  borderRadius: 2,
-                  marginLeft: 3,
-                  marginRight: 3,
-                  marginBottom: hp('2%'),
-                }}
-              />
-            }
-            activeDot={
-              <View
-                style={{
-                  backgroundColor: '#007aff',
-                  width: 22,
-                  height: 4,
-                  borderRadius: 2,
-                  marginLeft: 3,
-                  marginRight: 3,
-                  marginBottom: hp('2%'),
-                }}
-              />
-            }>
+            dot={<View style={styles.dot} />}
+            activeDot={<View style={styles.activeDot} />}>
             <SwiperComponent />
             <SwiperComponent />
             <SwiperComponent />
@@ -69,7 +40,7 @@ const Onboarding = ({navigation}) => {
           rightIcon={require('../../assets/leftArrow.png')}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -77,14 +48,32 @@ export default Onboarding;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: hp('80%'),
+    height: hp('82%'),
     backgroundColor: Colors.White,
   },
   buttonContainer: {
     paddingHorizontal: 20,
     position: 'absolute',
-    bottom: 25,
+    bottom: 35,
     right: 10,
     left: 10,
+  },
+  dot: {
+    backgroundColor: 'rgba(0,0,0,.2)',
+    width: 22,
+    height: 3,
+    borderRadius: 2,
+    marginLeft: 3,
+    marginRight: 3,
+    marginBottom: hp('2%'),
+  },
+  activeDot: {
+    backgroundColor: Colors.San_Marino,
+    width: 22,
+    height: 4,
+    borderRadius: 2,
+    marginLeft: 3,
+    marginRight: 3,
+    marginBottom: hp('2%'),
   },
 });
