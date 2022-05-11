@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -19,7 +20,7 @@ import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
 import HeaderComponent from '../components/headerComponent';
 
-const AppointmentsConfirmation = (props) => {
+const AppointmentsConfirmation = props => {
   return (
     <>
       <HeaderComponent navigation={props.navigation} title={"Appointment Confirmation"}/>
@@ -28,8 +29,12 @@ const AppointmentsConfirmation = (props) => {
       style={{
         flex: 1,
         backgroundColor: Colors.White,
-        justifyContent: 'center',
       }}>
+      <HeaderComponent
+        navigation={props.navigation}
+        title={'Appointment Confirmation'}
+        type={true}
+      />
       <View style={styles.midContainer}>
         <FastImage
           style={styles.icon}
@@ -77,6 +82,7 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     fontSize: 29,
     marginVertical: hp('3%'),
+    color: Colors.Black,
   },
   bodyTxt: {
     textAlign: 'center',
@@ -88,7 +94,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     paddingHorizontal: 15,
     position: 'absolute',
-    bottom: 20,
+    bottom: Platform.OS == 'ios' ? 35 : 5,
     left: 10,
     right: 10,
   },

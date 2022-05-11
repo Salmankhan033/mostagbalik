@@ -7,7 +7,10 @@ import {
 } from 'react-native-responsive-screen';
 const Button = ({onPress, title = '', leftIcon = '', rightIcon = ''}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.button}
+      activeOpacity={0.9}>
       <FastImage
         style={styles.iconLeft}
         source={leftIcon}

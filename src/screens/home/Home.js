@@ -142,7 +142,7 @@ const Home = props => {
               </Text>
               <View style={styles.bottom} />
             </View>
-            <View style={{}}></View>
+
             <Swiper
               style={{height: windowHeight <= 850 ? hp('45%') : hp('40%')}}
               dotColor={'red'}
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '8%',
     // marginRight: 5,
+    color: Colors.Black,
   },
   Card: {
     borderBottomColor: Colors.light_blue,

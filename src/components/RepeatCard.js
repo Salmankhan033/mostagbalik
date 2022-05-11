@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   iconStyle: {
-    width: wp('6%'),
-    height: hp('6%'),
+    width: wp('5%'),
+    height: hp('5%'),
   },
   inputStylesIcon: {
     width: wp('77%'),
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     // fontFamily: Typography.FONT_FAMILY_BOLD,
     justifyContent: 'center',
     alignSelf: 'center',
+    alignItems: 'center',
   },
   inputStyles: {
     width: wp('77%'),

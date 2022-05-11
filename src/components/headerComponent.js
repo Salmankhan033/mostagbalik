@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
@@ -41,6 +47,7 @@ const HeaderComponent = ({Home = false, title, navigation,Drawer= false}) => {
               <FastImage
                 source={require('../assets/back_arro.png')}
                 style={{height: 18, width: 18}}
+                resizeMode={'contain'}
               />
             </TouchableOpacity>
             <View style={{flex: 0.84, paddingLeft: 10}}>
@@ -72,5 +79,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 10,
+    justifyContent: 'center',
   },
 });

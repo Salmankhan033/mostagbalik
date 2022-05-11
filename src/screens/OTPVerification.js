@@ -10,7 +10,6 @@ import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
 import HeaderComponent from '../components/headerComponent';
-
 const OTPVerification = props => {
   const [isValidRequest, setIsValidRequest] = useState(false);
   const [code, setCode] = useState('');
@@ -99,6 +98,7 @@ const styles = StyleSheet.create({
     color:Colors.Black,
     textAlign: 'center',
     height: hp('6%'),
+    color: Colors.Black,
   },
   bodyText: {
     fontSize: Typography.FONT_SIZE_18,

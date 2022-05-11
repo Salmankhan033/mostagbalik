@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import React, {useState} from 'react';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
@@ -32,9 +39,9 @@ const BookAppointment = props => {
     {time: '21:40'},
   ];
   const separator = () => {
-    return <View style={{height: hp('2%')}} />;
+    return <View style={{height: hp('1%')}} />;
   };
-  console.log('xjkasnxkjasbcjksbcs', selectedTimeSlot);
+
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -51,7 +58,10 @@ const BookAppointment = props => {
   };
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
-    <HeaderComponent navigation={props.navigation} title={"Book Appointment"}/>
+      <HeaderComponent
+        navigation={props.navigation}
+        title={'Book Appointment'}
+      />
       <View style={styles.container}>
         <View style={styles.CalendarContainer}>
           <Text style={styles.headerTxt}>SELECT DATE</Text>
@@ -107,7 +117,6 @@ const styles = StyleSheet.create({
     marginTop: hp('2%'),
     width: wp('92%'),
     alignSelf: 'center',
-
     backgroundColor: Colors.White,
   },
   CalendarContainer: {
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
     width: wp('15%'),
     alignItems: 'center',
     justifyContent: 'center',
-    height: hp('5%'),
+    height: hp('4%'),
     borderRadius: hp('1%'),
   },
   timeTxt: {
@@ -143,7 +152,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     paddingHorizontal: 15,
     position: 'absolute',
-    bottom: 20,
+    bottom: Platform.OS == 'ios' ? 35 : 5,
     left: 10,
     right: 10,
   },

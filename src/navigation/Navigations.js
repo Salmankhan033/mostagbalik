@@ -172,7 +172,8 @@ const Navigations = () => {
         component={BookAppointment}
         options={{
           headerShown: false,
-          title: 'Book Appointment'}}
+          title: 'Book Appointment',
+        }}
       />
       <Stack.Screen
         name="MyAppointment"
