@@ -3,8 +3,12 @@ import React from 'react';
 import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
-const HeaderComponent = ({Home = false, title, navigation}) => {
+const HeaderComponent = ({Home = false, title, navigation,Drawer= false}) => {
   return (
     <View
       style={[
@@ -15,31 +19,31 @@ const HeaderComponent = ({Home = false, title, navigation}) => {
         {Home ? (
           <>
             <TouchableOpacity
-              style={{flex: 0.25, paddingHorizontal: 5}}
+              style={{flex: 0.33, paddingHorizontal: 5}}
               onPress={() => navigation.openDrawer()}>
               <FastImage
-                source={require('../assets/menu.png')}
-                style={{height: 25, width: 40}}
+                source={require('../assets/left_men.png')}
+                style={{height: 21, width: 28}}
               />
             </TouchableOpacity>
-            <View style={{flex: 0.75}}>
+            <View style={{flex: 0.67}}>
               <FastImage
-                source={require('../assets/1024.png')}
-                style={{height: 35, width: 150}}
+                source={require('../assets/logo.png')}
+                style={{height: 25, width: 123, marginTop:15}}
               />
             </View>
           </>
         ) : (
           <>
             <TouchableOpacity
-              style={{flex: 0.25, paddingHorizontal: 5}}
-              onPress={() => navigation.goBack()}>
+              style={{flex: 0.24, paddingHorizontal: 5}}
+              onPress={() =>Drawer ? navigation.openDrawer() : navigation.goBack()}>
               <FastImage
-                source={require('../assets/back_arrow.png')}
+                source={require('../assets/back_arro.png')}
                 style={{height: 18, width: 18}}
               />
             </TouchableOpacity>
-            <View style={{flex: 0.75, paddingLeft: 10}}>
+            <View style={{flex: 0.84, paddingLeft: 10}}>
               <Text style={styles.title}>{title}</Text>
             </View>
           </>
@@ -59,7 +63,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Typography.FONT_SIZE_16,
-    fontWeight: '600',
+    fontFamily:"OpenSans-Bold",
+    color:Colors.Black,
+    lineHeight:21,
   },
   subContainer: {
     flexDirection: 'row',

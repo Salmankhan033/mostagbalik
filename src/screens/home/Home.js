@@ -6,6 +6,8 @@ import {
   ScrollView,
   TouchableOpacity,
   I18nManager,
+  StatusBar,
+  Dimensions,
 } from 'react-native';
 import React, {useState} from 'react';
 import FastImage from 'react-native-fast-image';
@@ -23,13 +25,15 @@ import AboutModal from './components/aboutModal';
 import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
 import HeaderComponent from '../../components/headerComponent';
+import {useNavigation} from '@react-navigation/native';
+const windowHeight = Dimensions.get('window').height;
 
 const Home = props => {
   const [isModalVisible, setModalVisible] = useState(false);
   const {t, i18n} = useTranslation();
   const [lng, setLng] = useState('en');
   const [addlng, setaddLng] = useState(false);
-
+  const navigation = useNavigation();
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -49,7 +53,8 @@ const Home = props => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor:Colors.White}}>
+    <View style={{flex: 1, backgroundColor: Colors.White}}>
+      <StatusBar backgroundColor={Colors.Curious_Blue} translucent />
       {/* <View style={{justifyContent:'space-around',flexDirection:'row',marginTop:15}}>
   
   <TouchableOpacity
@@ -69,13 +74,13 @@ const Home = props => {
 
 
 </View> */}
-<HeaderComponent Home={true} navigation={props.navigation}/>
+
+      <HeaderComponent Home={true} navigation={navigation} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-
-        <View  style={styles.headerImg}>
+        <View style={styles.headerImg}>
           <FastImage
-           style={{height:'100%', width:"100%", }}
+            style={{height: '100%', width: '100%'}}
             source={require('../../assets/Group.png')}
           />
         </View>
@@ -87,7 +92,7 @@ const Home = props => {
               justifyContent: 'flex-end',
               paddingVertical: 15,
             }}>
-            <View>
+            <View style={{flex: 0.9}}>
               <Text style={styles.title}>
                 {t('common:Provide_Mostagbalik')}
               </Text>
@@ -131,7 +136,7 @@ const Home = props => {
               resizeMode={'contain'}
               source={require('../../assets/rowsImg.png')}
             />
-            <View style={{paddingHorizontal: '20%'}}>
+            <View style={{paddingHorizontal: '10%'}}>
               <Text style={styles.aboutUsTitle}>
                 {'What Our Client Say About Us.'}
               </Text>
@@ -139,45 +144,51 @@ const Home = props => {
             </View>
             <View style={{}}></View>
             <Swiper
-              style={{height: hp('35%')}}
+              style={{height: windowHeight <= 850 ? hp('45%') : hp('40%')}}
               dotColor={'red'}
               activeDotColor={'blue'}
-              dot={
-                <View
-                  style={styles.dot}
-                />
-              }
-              activeDot={
-                <View
-                  style={styles.activeDot}
-                />
-              }>
+              dot={<View style={styles.dot} />}
+              activeDot={<View style={styles.activeDot} />}
+              loop={false}
+              index={3}>
               <View style={styles.Card}>
+                <FastImage
+                  source={require('../../assets/coma.png')}
+                  style={styles.comma}
+                />
                 <Text style={styles.cardDescription}>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration in some
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
+                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
               </View>
               <View style={styles.Card}>
+                <FastImage
+                  source={require('../../assets/coma.png')}
+                  style={styles.comma}
+                />
                 <Text style={styles.cardDescription}>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration in some
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
+                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
               </View>
               <View style={styles.Card}>
+                <FastImage
+                  source={require('../../assets/coma.png')}
+                  style={styles.comma}
+                />
                 <Text style={styles.cardDescription}>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration in some
                   form, by injected humor, or randomized words. alteration in
                   some form, by injected humor.
                 </Text>
-                <Text style={styles.name}>{"Abdullah Ahmad"}</Text>
+                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
               </View>
             </Swiper>
           </View>
@@ -199,11 +210,11 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.White
+    backgroundColor: Colors.White,
   },
   headerImg: {
-    height: hp("22%"),
-    width: wp("100%"),
+    height: hp('22%'),
+    width: wp('100%'),
     // paddingRight:35
   },
   btnContainer: {
@@ -215,7 +226,7 @@ const styles = StyleSheet.create({
   },
   bottom: {
     borderBottomColor: '#65ABEF',
-    borderBottomWidth: hp('0.1%'),
+    borderBottomWidth: hp('0.2%'),
     width: wp('20%'),
     alignSelf: 'center',
     borderRadius: 3,
@@ -223,11 +234,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Typography.FONT_SIZE_24,
-    fontWeight: '700',
+    fontFamily: 'OpenSans-ExtraBold',
+    color: Colors.Black,
     lineHeight: 33,
     textAlign: 'center',
-    marginTop: '8%',
-    marginRight: 5,
+    marginTop: '10%',
   },
   img: {
     height: hp('7%'),
@@ -236,7 +247,8 @@ const styles = StyleSheet.create({
   },
   aboutUsTitle: {
     fontSize: Typography.FONT_SIZE_24,
-    fontWeight: '700',
+    fontFamily: 'OpenSans-ExtraBold',
+    color: Colors.Black,
     lineHeight: 33,
     textAlign: 'center',
     marginTop: '8%',
@@ -250,29 +262,31 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowRadius: 1.5,
+    elevation: 2,
     marginVertical: 15,
     padding: 15,
     borderBottomWidth: 8,
   },
   cardDescription: {
     fontSize: Typography.FONT_SIZE_16,
+    color: Colors.description_gray,
+    fontFamily: 'OpenSans-Regular',
     alignSelf: 'center',
-    fontWeight: '400',
     lineHeight: 24,
-    color: '#999',
   },
   name: {
     fontSize: Typography.FONT_SIZE_18,
+    color: Colors.Black,
+    fontFamily: 'OpenSans-Bold',
     fontWeight: '600',
     lineHeight: 24,
-    marginTop: 10,
+    marginTop: 15,
   },
-  dot:{
+  dot: {
     backgroundColor: 'rgba(0,0,0,.2)',
     width: 22,
     height: 3,
@@ -282,7 +296,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginBottom: hp('1%'),
   },
-  activeDot:{
+  activeDot: {
     backgroundColor: Colors.San_Marino,
     width: 22,
     height: 3,
@@ -291,5 +305,10 @@ const styles = StyleSheet.create({
     marginRight: 3,
     marginTop: 3,
     marginBottom: hp('1%'),
-  }
+  },
+  comma: {
+    height: hp(4),
+    width: wp(12),
+    marginBottom: 8,
+  },
 });

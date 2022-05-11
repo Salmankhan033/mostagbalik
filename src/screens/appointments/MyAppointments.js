@@ -6,8 +6,9 @@ import {
 } from 'react-native-responsive-screen';
 import SwitchButton from '../../components/appointmentComponents/SwitchButton';
 import MyAppointmentCard from '../../components/appointmentComponents/MyAppointmentCard';
+import HeaderComponent from '../../components/headerComponent';
 
-const MyAppointments = () => {
+const MyAppointments = (props) => {
   const [upComming, setUpComming] = useState(true);
   const [archive, setArchive] = useState(false);
   const data = [
@@ -38,6 +39,7 @@ const MyAppointments = () => {
   };
   return (
     <View style={{backgroundColor: 'white'}}>
+    <HeaderComponent Drawer={true} title={"My Appointment"} navigation={props.navigation}/>
       <SwitchButton
         defaultSelected={upComming}
         swicthSelected={archive}

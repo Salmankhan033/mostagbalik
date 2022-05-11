@@ -16,13 +16,15 @@ import {
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
+import HeaderComponent from '../components/headerComponent';
 
-const ChangeNumber = () => {
+const ChangeNumber = (props) => {
   const [mobileNo, setMobileNo] = useState('');
   return (
     <View style={{backgroundColor: Colors.White, flex: 1}}>
+    <HeaderComponent Drawer={true} title={"Change Number"} navigation={props.navigation}/>
       <View style={styles.container}>
-        <Text style={styles.txt}>MOBILE NUMBER</Text>
+        <Text style={styles.txt}>{"MOBILE NUMBER"}</Text>
         <TextInput
           placeholder="MOBILE NUMBER"
           style={styles.inputs}
@@ -33,7 +35,7 @@ const ChangeNumber = () => {
       </View>
       <View style={styles.btnContainer}>
         <Button
-          title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
+          // title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
           onPress={() => {}}
         />
       </View>
@@ -49,6 +51,9 @@ const styles = StyleSheet.create({
     height: hp('4%'),
     color: Colors.Gray44,
     textAlignVertical: 'center',
+    fontFamily:"OpenSans-Medium",
+    fontSize:Typography.FONT_SIZE_14,
+    lineHeight:19,
     marginTop: hp('2%'),
   },
   inputs: {

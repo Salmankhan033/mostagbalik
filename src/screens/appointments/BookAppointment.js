@@ -45,7 +45,7 @@ const BookAppointment = props => {
             : null,
         ]}
         onPress={() => setSelectedTimeSlot(item.time)}>
-        <Text style={styles.timeTxt}>{item.time}</Text>
+        <Text style={[styles.timeTxt,{color:item.time == selectedTimeSlot ? Colors.White : Colors.Black}]}>{item.time}</Text>
       </TouchableOpacity>
     );
   };
@@ -81,7 +81,7 @@ const BookAppointment = props => {
           />
         </View>
         <View style={styles.BottomContainer}>
-          <Text style={styles.headerTxt}>SELECT DATE</Text>
+          <Text style={styles.headerTxt}>{"AVAILABLE SLOTS"}</Text>
           <FlatList
             data={data}
             renderItem={renderItem}
@@ -114,8 +114,12 @@ const styles = StyleSheet.create({
     height: hp('45%'),
   },
   headerTxt: {
-    fontSize: Typography.FONT_SIZE_15,
+    fontSize: Typography.FONT_SIZE_14,
+    fontFamily:"OpenSans-Regular",
+    lineHeight:19,
     color: Colors.Gray44,
+    marginBottom:10,
+    marginHorizontal: hp('2%'),
   },
   timeView: {
     marginHorizontal: hp('2%'),
@@ -126,7 +130,9 @@ const styles = StyleSheet.create({
     borderRadius: hp('1%'),
   },
   timeTxt: {
-    fontSize: Typography.FONT_SIZE_13,
+    fontSize: Typography.FONT_SIZE_16,
+    fontFamily:"OpenSans-Medium",
+    lineHeight:22,
     textAlign: 'center',
     justifyContent: 'center',
   },

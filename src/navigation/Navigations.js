@@ -59,7 +59,7 @@ function MyDrawer() {
         name="My Appointments"
         component={MyAppointments}
         options={{
-          
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -73,6 +73,7 @@ function MyDrawer() {
         name="Change Number"
         component={ChangeNumber}
         options={{
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={{width: wp('4%'), height: hp('4%')}}
@@ -86,6 +87,7 @@ function MyDrawer() {
         name="About Us"
         component={AboutUs}
         options={{
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -99,6 +101,7 @@ function MyDrawer() {
         name="Terms & Conditions"
         component={TermCondition}
         options={{
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -112,6 +115,7 @@ function MyDrawer() {
         name="Privacy Policy"
         component={PrivacyPolicy}
         options={{
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -125,6 +129,7 @@ function MyDrawer() {
         name="Change Language"
         component={ChangeLanguage}
         options={{
+          headerShown: false,
           drawerIcon: () => (
             <FastImage
               style={styles.icon}
@@ -172,22 +177,31 @@ const Navigations = () => {
       <Stack.Screen
         name="MyAppointment"
         component={MyAppointments}
-        options={{title: 'My Appointment'}}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+          title: 'My Appointment'}}
       />
       <Stack.Screen
         name="NextAppointment"
         component={NextBookAppointments}
-        options={{title: 'Book Appointment'}}
+        options={{
+          headerShown: false,
+          title: 'Book Appointment'}}
       />
       <Stack.Screen
         name="OTPVerification"
         component={OTPVerification}
-        options={{title: null}}
+        options={{
+          headerShown: false,
+          title: null}}
       />
       <Stack.Screen
         name="AppointmentsConfirmation"
         component={AppointmentsConfirmation}
-        options={{title: 'Appointment Confirmation'}}
+        options={{
+          headerShown:false,
+          title: 'Appointment Confirmation'}}
       />
     </Stack.Navigator>
   );

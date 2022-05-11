@@ -17,9 +17,13 @@ import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
+import HeaderComponent from '../components/headerComponent';
 
-const AppointmentsConfirmation = () => {
+const AppointmentsConfirmation = (props) => {
   return (
+    <>
+      <HeaderComponent navigation={props.navigation} title={"Appointment Confirmation"}/>
+    
     <View
       style={{
         flex: 1,
@@ -46,6 +50,7 @@ const AppointmentsConfirmation = () => {
         />
       </View>
     </View>
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -60,20 +65,24 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 3,
+    elevation: 2,
   },
   icon: {
     width: wp('50%'),
     height: hp('20'),
   },
   headerText: {
-    fontSize: Typography.FONT_SIZE_24,
-    fontWeight: Typography.FONT_WEIGHT_BOLD,
+    fontFamily: 'OpenSans-Bold',
+    color:Colors.Black,
+    lineHeight: 40,
+    fontSize: 29,
     marginVertical: hp('3%'),
   },
   bodyTxt: {
     textAlign: 'center',
-    fontSize: Typography.FONT_SIZE_16,
+    fontSize: Typography.FONT_SIZE_18,
+    fontFamily: 'OpenSans-Regular',
+    lineHeight: 24,
     color: Colors.Gray44,
   },
   btnContainer: {

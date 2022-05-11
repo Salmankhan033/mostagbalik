@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: Typography.FONT_SIZE_16,
     color: Colors.Gray44,
+    fontFamily:"OpenSans-Regular",
+    lineHeight:22,
     marginTop: hp('1%'),
     marginBottom: hp('1%'),
   },
@@ -64,9 +66,12 @@ const styles = StyleSheet.create({
     height: wp('6%'),
   },
   dateText: {
-    fontSize: Typography.FONT_SIZE_12,
+    fontSize: Typography.FONT_SIZE_14,
     color: Colors.lightGray,
+    fontFamily:"OpenSans-Regular",
+    lineHeight:19,
     marginStart: wp('3%'),
+    marginTop:3
   },
 });
 export default MyAppointmentCard;

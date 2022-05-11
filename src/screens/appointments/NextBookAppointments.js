@@ -21,7 +21,8 @@ import Button from '../../../components/Button';
 import RepeatCard from '../../components/RepeatCard';
 import ModalListView from '../../components/ModalListView';
 import RenderCard from '../../components/RenderCard';
-
+import HeaderComponent from '../../components/headerComponent';
+ 
 const NextBookAppointments = props => {
   let type = props.route?.params ? props.route.params.type : '';
   const [appointmentsVisibility, setAppointmentsVisibility] = useState(false);
@@ -48,6 +49,7 @@ const NextBookAppointments = props => {
 
   return (
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
+      <HeaderComponent navigation={props.navigation} title={"Book Appointment"}/>
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <Text style={styles.txt}>PURPOSE OF VISIT</Text>
@@ -132,7 +134,9 @@ const styles = StyleSheet.create({
   },
   txt: {
     height: hp('4%'),
-    borderColor: Colors.lightGray,
+    fontSize: Typography.FONT_SIZE_16,
+    color: Colors.lightGray,
+    fontFamily:"OpenSans-Medium",
     textAlignVertical: 'center',
     marginTop: hp('2%'),
   },

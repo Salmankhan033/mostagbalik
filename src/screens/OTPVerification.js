@@ -9,6 +9,7 @@ import {
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
+import HeaderComponent from '../components/headerComponent';
 
 const OTPVerification = props => {
   const [isValidRequest, setIsValidRequest] = useState(false);
@@ -32,6 +33,7 @@ const OTPVerification = props => {
 
   return (
     <View style={{backgroundColor: Colors.White, flex: 1}}>
+    <HeaderComponent navigation={props.navigation}/>
       <View style={styles.headerTextView}>
         <Text style={styles.headerText}>Verification Code</Text>
         <Text style={styles.bodyText}>
@@ -41,7 +43,7 @@ const OTPVerification = props => {
 
       <OTPInputView
         style={styles.otpInput}
-        pinCount={5}
+        pinCount={4}
         code={code}
         onCodeChanged={code => {
           setCode(code);
@@ -85,7 +87,7 @@ const OTPVerification = props => {
 const styles = StyleSheet.create({
   headerTextView: {
     width: wp('92%'),
-    height: hp('20%'),
+    height: hp('18%'),
 
     alignSelf: 'center',
     alignItems: 'center',
@@ -93,17 +95,20 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: Typography.FONT_SIZE_24,
-    fontWeight: Typography.FONT_WEIGHT_BOLD,
+    fontFamily:"OpenSans-Bold",
+    color:Colors.Black,
     textAlign: 'center',
     height: hp('6%'),
   },
   bodyText: {
+    fontSize: Typography.FONT_SIZE_18,
+    fontFamily:"OpenSans-Regular",
     textAlign: 'center',
-    fontSize: Typography.FONT_SIZE_16,
+    lineHeight:24,
     height: hp('6%'),
   },
   otpInput: {
-    width: wp('92%'),
+    width: wp('70%'),
     height: hp('10%'),
     alignSelf: 'center',
   },
@@ -133,6 +138,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   resendText: {
+    fontFamily:"OpenSans-Regular",
     color: Colors.lightGray,
     marginLeft: wp('1%'),
   },

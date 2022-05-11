@@ -1,6 +1,12 @@
-import {StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  StatusBar,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
-
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -9,22 +15,19 @@ import SwiperComponent from '../../../components/swiper';
 import Swiper from 'react-native-swiper';
 import Button from '../../../components/Button';
 import * as Colors from '../../constants/colors';
+const windowHeight = Dimensions.get('window').height;
 
 const Onboarding = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
       <View>
-        <StatusBar
-          barStyle="dark-content"
-          hidden={false}
-          backgroundColor={Colors.Curious_Blue}
-          translucent={true}
-        />
+        <StatusBar backgroundColor={Colors.Curious_Blue} translucent />
         <View style={styles.wrapper}>
           <Swiper
             style={styles.wrapper}
             dotColor={'red'}
             activeDotColor={'blue'}
+            loop={false}
             dot={<View style={styles.dot} />}
             activeDot={<View style={styles.activeDot} />}>
             <SwiperComponent />
@@ -48,13 +51,13 @@ export default Onboarding;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: hp('82%'),
+    height: windowHeight >= 850 ? hp('82%') : hp('88%'),
     backgroundColor: Colors.White,
   },
   buttonContainer: {
     paddingHorizontal: 20,
     position: 'absolute',
-    bottom: 35,
+    bottom: 20,
     right: 10,
     left: 10,
   },

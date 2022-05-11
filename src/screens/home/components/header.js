@@ -6,6 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import FastImage from 'react-native-fast-image';
+import * as Colors from '../../../constants/colors';
 
 const Header = ({onPress}) => {
   return (
@@ -16,7 +17,7 @@ const Header = ({onPress}) => {
           source={require('../../../assets/rowsImg.png')}
         />
         <TouchableOpacity style={styles.titleContainer}>
-          <Text style={styles.title}>About Mostagbalik</Text>
+          <Text style={styles.title}>{'About Mostagbalik'}</Text>
           <View style={styles.bottom} />
         </TouchableOpacity>
       </View>
@@ -43,15 +44,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Typography.FONT_SIZE_24,
-    fontWeight: '700',
+    fontFamily: 'OpenSans-ExtraBold',
+    color: Colors.Black,
     lineHeight: 33,
     textAlign: 'center',
-    marginTop: '14%',
-    marginLeft: 10,
+    marginTop: '15%',
+    // marginLeft: 10,
   },
   bottom: {
-    borderBottomColor: '#65ABEF',
-    borderBottomWidth: hp('0.1%'),
+    borderBottomColor: Colors.San_Marino,
+    borderBottomWidth: hp('0.2%'),
     width: wp('20%'),
     alignSelf: 'center',
     borderRadius: 3,
@@ -62,10 +64,12 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: Typography.FONT_SIZE_18,
+    color: Colors.description_gray,
+    fontFamily: 'OpenSans-Regular',
     lineHeight: 28,
     textAlign: 'justify',
-    color: '#999999',
     paddingVertical: 8,
+    paddingHorizontal: 5,
   },
   seeMore: {
     alignSelf: 'flex-end',
@@ -73,8 +77,9 @@ const styles = StyleSheet.create({
   },
   seeMoreText: {
     fontSize: Typography.FONT_SIZE_16,
+    fontFamily: 'OpenSans-Medium',
     lineHeight: 19,
-    color: '#65ABEF',
+    color: Colors.San_Marino,
   },
   img: {
     height: hp('7%'),

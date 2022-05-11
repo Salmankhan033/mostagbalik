@@ -6,3 +6,4 @@ export const San_Marino = '#65ABEF';
 export const light_blue = '#0B5DA6';
 export const light_gray2 = '#BEBEBE';
 export const Curious_Blue = '#347ab2';
+export const description_gray ="#999999"
