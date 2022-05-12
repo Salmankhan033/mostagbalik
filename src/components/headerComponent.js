@@ -42,7 +42,7 @@ const HeaderComponent = ({Home = false, title, navigation,Drawer= false}) => {
         ) : (
           <>
             <TouchableOpacity
-              style={{flex: 0.24, paddingHorizontal: 5}}
+              style={{flex: 0.1, paddingHorizontal: 5}}
               onPress={() =>Drawer ? navigation.openDrawer() : navigation.goBack()}>
               <FastImage
                 source={require('../assets/back_arro.png')}
@@ -50,9 +50,10 @@ const HeaderComponent = ({Home = false, title, navigation,Drawer= false}) => {
                 resizeMode={'contain'}
               />
             </TouchableOpacity>
-            <View style={{flex: 0.84, paddingLeft: 10}}>
+            <View style={{flex: 0.8, justifyContent:'center', alignItems:'center'}}>
               <Text style={styles.title}>{title}</Text>
             </View>
+            <View style={{flex:0.1}}/>
           </>
         )}
       </View>

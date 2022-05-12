@@ -30,23 +30,23 @@ const NextBookAppointments = props => {
   const [purpose, setPurpose] = useState('Abroad Studies');
   const data = [
     {title: 'Abroad Studies'},
-    {title: 'Abroad Studies 1'},
-    {title: 'Abroad Studies 2'},
+    {title: 'Career Pursuing'},
+    {title: 'Future Studies'},
     {title: 'Abroad Studies 3'},
-    {title: 'Abroad Studies 4'},
-    {title: 'Abroad Studies 5'},
-    {title: 'Abroad Studies 6'},
-    {title: 'Abroad Studies 7'},
-    {title: 'Abroad Studies 8'},
-    {title: 'Abroad Studies 9'},
-    {title: 'Abroad Studies 10'},
+    {title: 'Scholarships'},
+    {title: 'Abroad Scholarships'},
+    {title: 'Other'},
   ];
   const onPurposeData = item => {
     setPurpose(item);
 
     setAppointmentsVisibility(false);
   };
-
+  const [isModalVisible, setModalVisible] = useState(false);
+  
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
       <HeaderComponent navigation={props.navigation} title={"Book Appointment"}/>

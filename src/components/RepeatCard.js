@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: wp('5%'),
     height: hp('5%'),
+    alignSelf:'center'
   },
   inputStylesIcon: {
     width: wp('77%'),

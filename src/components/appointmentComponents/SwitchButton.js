@@ -16,22 +16,25 @@ import * as Typography from '../../constants/typography';
 const SwitchButton = props => {
   return (
     <View
-      style={
-        props.cameFrom ? styles.buttonsContainerForm : styles.buttonsContainer
+      style={styles.buttonsContainerForm 
       }>
       <View
         style={{
           flexDirection: 'row',
-          width: wp('80%'),
+          width: wp('92%'),
           alignSelf: 'center',
-
-          justifyContent: 'center',
+          height: 50,
+          borderColor:Colors.selectedButton,
+          borderWidth:1,
+          borderRadius:7,
+          marginVertical:10
         }}>
-        <View style={styles.buttonWraper}>
           <TouchableOpacity
-            style={
-              props.defaultSelected ? styles.buttonSelected : styles.button
-            }
+            style={[
+              styles.button,{backgroundColor: props.defaultSelected ? Colors.selectedButton : Colors.White,
+                borderTopLeftRadius: 7,
+              borderBottomLeftRadius:7,} 
+            ]}
             activeOpacity={0.8}
             onPress={() => props.toggleSwitch()}>
             <Text
@@ -43,12 +46,12 @@ const SwitchButton = props => {
               {props.defaultSelectedText}
             </Text>
           </TouchableOpacity>
-        </View>
 
-        <View style={styles.buttonWraper}>
           <TouchableOpacity
-            style={props.swicthSelected ? styles.buttonSelected : styles.button}
-            activeOpacity={0.8}
+            style={[styles.button,{
+              backgroundColor: props.defaultSelected ? Colors.White : Colors.selectedButton,
+              borderTopRightRadius:7,
+              borderBottomRightRadius:7} ]}
             onPress={() => props.switchToggle()}>
             <Text
               style={
@@ -59,7 +62,6 @@ const SwitchButton = props => {
               {props.swicthSelectedText}
             </Text>
           </TouchableOpacity>
-        </View>
       </View>
     </View>
   );
@@ -76,12 +78,9 @@ const styles = StyleSheet.create({
   },
   buttonsContainerForm: {
     backgroundColor: Colors.White,
-    width: wp('92%'),
+    width: wp('100%'),
     height: hp('8%'),
-    flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    marginTop: hp('2%'),
   },
   buttonWraper: {
     width: wp('45%'),
@@ -90,20 +89,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: wp('42%'),
-    height: hp('5%'),
+    flex:0.5,
     backgroundColor: Colors.White,
     justifyContent: 'center',
-    borderRadius: wp('2%'),
-    borderColor: Colors.selectedButton,
-    borderWidth: wp('.1%'),
   },
   buttonSelected: {
-    width: wp('42%'),
-    height: hp('5%'),
+    flex:0.5,
     backgroundColor: Colors.selectedButton,
     justifyContent: 'center',
-    borderRadius: wp('2%'),
+    borderTopLeftRadius:15,
+    borderBottomLeftRadius:15,
   },
   buttonText: {
     alignSelf: 'center',

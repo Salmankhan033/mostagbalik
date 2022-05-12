@@ -30,11 +30,6 @@ const AppointmentsConfirmation = props => {
         flex: 1,
         backgroundColor: Colors.White,
       }}>
-      <HeaderComponent
-        navigation={props.navigation}
-        title={'Appointment Confirmation'}
-        type={true}
-      />
       <View style={styles.midContainer}>
         <FastImage
           style={styles.icon}
@@ -61,16 +56,16 @@ const AppointmentsConfirmation = props => {
 const styles = StyleSheet.create({
   midContainer: {
     width: wp('92%'),
-    height: hp('60%'),
+    height: hp('65%'),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.White,
     alignSelf: 'center',
-    shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 2,
+    // shadowColor: '#171717',
+    // shadowOffset: {width: 0, height: 2},
+    // shadowOpacity: 0.2,
+    // shadowRadius: 3,
+    // elevation: 2,
   },
   icon: {
     width: wp('50%'),

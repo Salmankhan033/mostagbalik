@@ -34,6 +34,7 @@ const Home = props => {
   const [lng, setLng] = useState('en');
   const [addlng, setaddLng] = useState(false);
   const navigation = useNavigation();
+  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -201,7 +202,6 @@ const Home = props => {
           onPress={() => props.navigation.navigate('BookAppointment')}
         />
       </View>
-      <AboutModal isVisible={isModalVisible} onPress={toggleModal} />
     </View>
   );
 };

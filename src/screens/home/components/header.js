@@ -6,7 +6,7 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 import * as Typography from '../../../constants/typography';
 import {
   heightPercentageToDP as hp,
@@ -14,8 +14,15 @@ import {
 } from 'react-native-responsive-screen';
 import FastImage from 'react-native-fast-image';
 import * as Colors from '../../../constants/colors';
+import AboutModal from './aboutModal';
 
 const Header = ({onPress}) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row'}}>
@@ -35,9 +42,13 @@ const Header = ({onPress}) => {
           place for higher education.
         </Text>
       </View>
-      <TouchableOpacity style={styles.seeMore} onPress={onPress}>
+      <TouchableOpacity style={styles.seeMore} onPress={toggleModal}>
         <Text style={styles.seeMoreText}>{'Read More'}</Text>
       </TouchableOpacity>
+      {isModalVisible &&
+        <AboutModal isVisible={isModalVisible} onPress={toggleModal} />
+      }
+
     </View>
   );
 };
@@ -77,10 +88,12 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     paddingVertical: 8,
     paddingHorizontal: 5,
+    
   },
   seeMore: {
     alignSelf: 'flex-end',
     paddingHorizontal: 15,
+    paddingBottom:20
   },
   seeMoreText: {
     fontSize: Typography.FONT_SIZE_16,

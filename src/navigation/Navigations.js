@@ -128,6 +128,7 @@ function MyDrawer() {
       <Drawer.Screen
         name="Change Language"
         component={ChangeLanguage}
+        
         options={{
           headerShown: false,
           drawerIcon: () => (

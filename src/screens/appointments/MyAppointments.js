@@ -48,7 +48,6 @@ const MyAppointments = (props) => {
         defaultSelectedText={'Up Comming'}
         swicthSelectedText={'Archive'}
       />
-
       <FlatList
         data={data}
         renderItem={renderItem}

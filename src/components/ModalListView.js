@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useRef, useEffect} from 'react';
 import {
   View,
   Text,
@@ -16,30 +16,43 @@ import FastImage from 'react-native-fast-image';
 
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
-const ModalListView = props => {
+const ModalListView = (props, isVisible, onPress) => {
+  const refRBSheet = useRef();
+  useEffect(() => {
+    if (isVisible) {
+      refRBSheet.current.open();
+    } else {
+      refRBSheet.current.close();
+    }})
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={props.visiblity}
-      onRequestClose={() => {
-        props.changeVisibility(false);
-      }}>
+    <RBSheet
+       ref={refRBSheet}
+        closeOnDragDown={false}
+        closeOnPressMask={false}
+        animationType={'slide'}
+        customStyles={{
+          container: {
+            height: '60%',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          }}}>
       <View style={styles.modalView}>
         <View style={styles.modalTop}>
-          <TouchableOpacity
-            style={styles.cancelTouch}
-            onPress={() => props.changeVisibility()}
-            activeOpacity={0.8}>
-            <FastImage
-              source={require('../assets/close.png')}
-              style={styles.cancelIcon}
-            />
-          </TouchableOpacity>
+        
           <Text style={props?.normalTitle ? styles.normalTitle : styles.title}>
             {props.title}
           </Text>
+          <TouchableOpacity
+            style={styles.cancelTouch}
+            onPress={() => props.changeVisibility()}
+           >
+            <FastImage
+              source={require('../assets/cross.png')}
+              style={styles.cancelIcon}
+            />
+          </TouchableOpacity>
         </View>
         <FlatList
           data={props.data}
@@ -49,40 +62,40 @@ const ModalListView = props => {
           }}
         />
       </View>
-    </Modal>
+    </RBSheet>
   );
 };
 const styles = StyleSheet.create({
   modalView: {
     backgroundColor: Colors.White,
     width: wp('100%'),
-    alignItems: 'center',
     height: hp('100%'),
-    alignItems: 'center',
-    paddingTop: hp('6%'),
+    paddingHorizontal:15,
+    paddingTop: hp('3%'),
     justifyContent: 'center',
-    paddingBottom: Platform.OS === 'ios' ? hp('0') : hp('5%'),
   },
   cancelIcon: {
-    width: wp('9%'),
-    height: wp('9%'),
-    marginHorizontal: wp('2%'),
+    width: wp('5%'),
+    height: wp('5%'),
   },
   cancelTouch: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: Platform.OS === 'ios' ? hp('2%') : hp('1%'),
-    height: hp('5%'),
+    height: hp('4%'),
+    width: wp("8%"),
   },
   modalTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:"center",
+    marginBottom:8
   },
   title: {
     color: Colors.Black,
-    fontWeight: Typography.FONT_WEIGHT_BOLD,
-    fontSize: Typography.FONT_SIZE_24,
-    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontSize: Typography.FONT_SIZE_18,
+    fontFamily:"OpenSans-Bold",
+    lineHeight:26,
+    
   },
   normalTitle: {
     color: Colors.Black,
