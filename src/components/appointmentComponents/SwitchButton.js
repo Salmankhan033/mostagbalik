@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     width: wp('100%'),
     height: hp('8%'),
     alignItems: 'center',
+    marginBottom:10
   },
   buttonWraper: {
     width: wp('45%'),
