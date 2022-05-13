@@ -19,6 +19,7 @@ import * as Colors from '../../constants/colors';
 import * as Typography from '../../constants/typography';
 import Button from '../../../components/Button';
 import HeaderComponent from '../../components/headerComponent';
+import {t} from 'i18next';
 
 const BookAppointment = props => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
@@ -71,11 +72,11 @@ const BookAppointment = props => {
       <StatusBar backgroundColor={Colors.statusBar} translucent />
       <HeaderComponent
         navigation={props.navigation}
-        title={'Book Appointment'}
+        title={t('common:Book_Appointment')}
       />
       <View style={styles.container}>
         <View style={styles.CalendarContainer}>
-          <Text style={styles.headerTxt}>SELECT DATE</Text>
+          <Text style={styles.headerTxt}>{t('common:SELECT_DATE')}</Text>
           <Calendar
             // Initially visible month. Default = now
             current={new Date()}
@@ -102,7 +103,7 @@ const BookAppointment = props => {
           />
         </View>
         <View style={styles.BottomContainer}>
-          <Text style={styles.headerTxt}>{'AVAILABLE SLOTS'}</Text>
+          <Text style={styles.headerTxt}>{t('common:AVAILABLE_SLOTS')}</Text>
           <FlatList
             data={data}
             renderItem={renderItem}

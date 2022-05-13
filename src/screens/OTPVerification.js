@@ -10,7 +10,9 @@ import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
 import HeaderComponent from '../components/headerComponent';
+import {useTranslation} from 'react-i18next';
 const OTPVerification = props => {
+  const {t, i18n} = useTranslation();
   const [isValidRequest, setIsValidRequest] = useState(false);
   const [code, setCode] = useState('');
   const [counter, SetCounter] = useState(60); // Set here your own timer configurable
@@ -32,12 +34,10 @@ const OTPVerification = props => {
 
   return (
     <View style={{backgroundColor: Colors.White, flex: 1}}>
-    <HeaderComponent navigation={props.navigation}/>
+      <HeaderComponent navigation={props.navigation} />
       <View style={styles.headerTextView}>
-        <Text style={styles.headerText}>Verification Code</Text>
-        <Text style={styles.bodyText}>
-          SMS with code has been {'\n'}sent to 65893265
-        </Text>
+        <Text style={styles.headerText}>{t('common:Verification_Code')}</Text>
+        <Text style={styles.bodyText}>{t('common:OTP_Body')} 65893265`</Text>
       </View>
 
       <OTPInputView
@@ -94,17 +94,17 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: Typography.FONT_SIZE_24,
-    fontFamily:"OpenSans-Bold",
-    color:Colors.Black,
+    fontFamily: 'OpenSans-Bold',
+    color: Colors.Black,
     textAlign: 'center',
     height: hp('6%'),
     color: Colors.Black,
   },
   bodyText: {
     fontSize: Typography.FONT_SIZE_18,
-    fontFamily:"OpenSans-Regular",
+    fontFamily: 'OpenSans-Regular',
     textAlign: 'center',
-    lineHeight:24,
+    lineHeight: 24,
     height: hp('6%'),
   },
   otpInput: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   resendText: {
-    fontFamily:"OpenSans-Regular",
+    fontFamily: 'OpenSans-Regular',
     color: Colors.lightGray,
     marginLeft: wp('1%'),
   },

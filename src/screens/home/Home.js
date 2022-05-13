@@ -108,21 +108,15 @@ const Home = props => {
           </View>
           <Card
             title={t('common:Abroad_Studies')}
-            description={
-              'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
-            }
+            description={t('common:Abroad_Description')}
           />
           <Card
-            title={'Further Education'}
-            description={
-              'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
-            }
+            title={t('common:Further_Education')}
+            description={t('common:Further_Description')}
           />
           <Card
-            title={'Expert Consultancy'}
-            description={
-              'There are many variations of passages lorem Ipsum available, but the thing is majority have suffered alteration in some form, injected humor, or randomized words.'
-            }
+            title={t('common:Expert_Consultancy')}
+            description={t('common:Expert_Description')}
           />
         </View>
         <View>
@@ -139,7 +133,7 @@ const Home = props => {
             />
             <View style={{paddingHorizontal: '10%'}}>
               <Text style={styles.aboutUsTitle}>
-                {'What Our Client Say About Us.'}
+                {t('common:WhatClientSay')}
               </Text>
               <View style={styles.bottom} />
             </View>
@@ -158,12 +152,9 @@ const Home = props => {
                   style={styles.comma}
                 />
                 <Text style={styles.cardDescription}>
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
-                  form, by injected humor, or randomized words. alteration in
-                  some form, by injected humor.
+                  {t('common:ClientDescription')}
                 </Text>
-                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
+                <Text style={styles.name}>{t('common:Client_Name')}</Text>
               </View>
               <View style={styles.Card}>
                 <FastImage
@@ -171,12 +162,9 @@ const Home = props => {
                   style={styles.comma}
                 />
                 <Text style={styles.cardDescription}>
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
-                  form, by injected humor, or randomized words. alteration in
-                  some form, by injected humor.
+                  {t('common:ClientDescription')}
                 </Text>
-                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
+                <Text style={styles.name}>{t('common:Client_Name')}</Text>
               </View>
               <View style={styles.Card}>
                 <FastImage
@@ -184,12 +172,9 @@ const Home = props => {
                   style={styles.comma}
                 />
                 <Text style={styles.cardDescription}>
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
-                  form, by injected humor, or randomized words. alteration in
-                  some form, by injected humor.
+                  {t('common:ClientDescription')}
                 </Text>
-                <Text style={styles.name}>{'Abdullah Ahmad'}</Text>
+                <Text style={styles.name}>{t('common:Client_Name')}</Text>
               </View>
             </Swiper>
           </View>
@@ -197,7 +182,7 @@ const Home = props => {
       </ScrollView>
       <View style={styles.btnContainer}>
         <Button
-          title={'BOOK AN APPOINTMENT'}
+          title={t('common:BOOK_AN_APPOINTMENT')}
           leftIcon={require('../../assets/calenderIcon.png')}
           onPress={() => props.navigation.navigate('BookAppointment')}
         />

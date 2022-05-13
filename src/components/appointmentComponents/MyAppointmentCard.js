@@ -5,15 +5,17 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import FastImage from 'react-native-fast-image';
+import {useTranslation} from 'react-i18next';
 
 import * as Colors from '../../constants/colors';
 import * as Typography from '../../constants/typography';
 
 const MyAppointmentCard = () => {
+  const {t, i18n} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.secondView}>
-        <Text style={styles.title}>Abroad Studies</Text>
+        <Text style={styles.title}>{t('common:Abroad_Studies')}</Text>
         <View style={styles.midView}>
           <FastImage
             style={styles.icon}
@@ -56,8 +58,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: Typography.FONT_SIZE_16,
     color: Colors.Gray44,
-    fontFamily:"OpenSans-Regular",
-    lineHeight:22,
+    fontFamily: 'OpenSans-Regular',
+    lineHeight: 22,
     marginTop: hp('1%'),
     marginBottom: hp('1%'),
   },
@@ -68,10 +70,10 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: Typography.FONT_SIZE_14,
     color: Colors.lightGray,
-    fontFamily:"OpenSans-Regular",
-    lineHeight:19,
+    fontFamily: 'OpenSans-Regular',
+    lineHeight: 19,
     marginStart: wp('3%'),
-    marginTop:3
+    marginTop: 3,
   },
 });
 export default MyAppointmentCard;

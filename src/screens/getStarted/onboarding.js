@@ -7,6 +7,7 @@ import {
   Dimensions,
 } from 'react-native';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -15,9 +16,11 @@ import SwiperComponent from '../../../components/swiper';
 import Swiper from 'react-native-swiper';
 import Button from '../../../components/Button';
 import * as Colors from '../../constants/colors';
+
 const windowHeight = Dimensions.get('window').height;
 
 const Onboarding = ({navigation}) => {
+  const {t, i18n} = useTranslation();
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
       <View>
@@ -38,7 +41,7 @@ const Onboarding = ({navigation}) => {
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          title={'GET STARTED'}
+          title={t('common:GET_STARTED')}
           onPress={() => navigation.navigate('Drawer')}
           rightIcon={require('../../assets/leftArrow.png')}
         />

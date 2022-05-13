@@ -14,11 +14,13 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useTranslation} from 'react-i18next';
 import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 
 const CustomDrawer = props => {
+  const {t, i18n} = useTranslation();
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView
@@ -41,7 +43,7 @@ const CustomDrawer = props => {
 
               textAlign: 'left',
             }}>
-            Hello
+            {t('common:Hello')}
           </Text>
         </View>
 
@@ -63,7 +65,7 @@ const CustomDrawer = props => {
                 fontFamily: 'OpenSans-Medium',
                 marginLeft: wp('2%'),
               }}>
-              Change Language
+              {t('common:Change_Language')}
             </Text>
           </View>
         </TouchableOpacity>
@@ -84,7 +86,7 @@ const CustomDrawer = props => {
                 marginLeft: wp('2%'),
                 fontFamily: 'OpenSans-Medium',
               }}>
-              Logout
+              {t('common:Logout')}
             </Text>
           </View>
         </TouchableOpacity>

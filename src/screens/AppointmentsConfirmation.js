@@ -14,42 +14,47 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import FastImage from 'react-native-fast-image';
-
+import {useTranslation} from 'react-i18next';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
 import HeaderComponent from '../components/headerComponent';
 
 const AppointmentsConfirmation = props => {
+  const {t, i18n} = useTranslation();
   return (
     <>
-      <HeaderComponent navigation={props.navigation} title={"Appointment Confirmation"}/>
-    
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.White,
-      }}>
-      <View style={styles.midContainer}>
-        <FastImage
-          style={styles.icon}
-          resizeMode={'contain'}
-          source={require('../assets/confirmed.png')}
-        />
-        <Text style={styles.headerText}>Thanks for booking!</Text>
-        <Text style={styles.bodyTxt}>
-          Your appointment has been{'\n'}booked successfully on{'\n'} 20 April
-          2022, 10:30 am
-        </Text>
+      <HeaderComponent
+        navigation={props.navigation}
+        title={t('common:Appointment_Confirmation')}
+      />
+
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: Colors.White,
+        }}>
+        <View style={styles.midContainer}>
+          <FastImage
+            style={styles.icon}
+            resizeMode={'contain'}
+            source={require('../assets/confirmed.png')}
+          />
+          <Text style={styles.headerText}>
+            {t('common:Thanks-for_booking')}
+          </Text>
+          <Text style={styles.bodyTxt}>
+            {t('common:Thanks_for_Booking_body')}
+          </Text>
+        </View>
+        <View style={styles.btnContainer}>
+          <Button
+            title={'ADD TO CALENDAR'}
+            leftIcon={require('../assets/calenderIcon.png')}
+            onPress={() => {}}
+          />
+        </View>
       </View>
-      <View style={styles.btnContainer}>
-        <Button
-          title={'ADD TO CALENDAR'}
-          leftIcon={require('../assets/calenderIcon.png')}
-          onPress={() => {}}
-        />
-      </View>
-    </View>
     </>
   );
 };
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontFamily: 'OpenSans-Bold',
-    color:Colors.Black,
+    color: Colors.Black,
     lineHeight: 40,
     fontSize: 29,
     marginVertical: hp('3%'),

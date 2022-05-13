@@ -6,7 +6,9 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import React,{useState} from 'react';
+
+import {useTranslation} from 'react-i18next';
+import React, {useState} from 'react';
 import * as Typography from '../../../constants/typography';
 import {
   heightPercentageToDP as hp,
@@ -18,7 +20,7 @@ import AboutModal from './aboutModal';
 
 const Header = ({onPress}) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  
+  const {t, i18n} = useTranslation();
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -31,24 +33,21 @@ const Header = ({onPress}) => {
           source={require('../../../assets/rowsImg.png')}
         />
         <TouchableOpacity style={styles.titleContainer}>
-          <Text style={styles.title}>{'About Mostagbalik'}</Text>
+          <Text style={styles.title}>{t('common:About_Mostagbalik')}</Text>
           <View style={styles.bottom} />
         </TouchableOpacity>
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={styles.description} numberOfLines={5}>
-          Your future is consultancy that offers fresh highschool graduates a
-          detailed overview of choosing majors, career paths and the perfect
-          place for higher education.
+          {t('common:Mostagbalik_SDescription')}
         </Text>
       </View>
       <TouchableOpacity style={styles.seeMore} onPress={toggleModal}>
-        <Text style={styles.seeMoreText}>{'Read More'}</Text>
+        <Text style={styles.seeMoreText}>{t('common:Read_More')}</Text>
       </TouchableOpacity>
-      {isModalVisible &&
+      {isModalVisible && (
         <AboutModal isVisible={isModalVisible} onPress={toggleModal} />
-      }
-
+      )}
     </View>
   );
 };
@@ -88,12 +87,11 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     paddingVertical: 8,
     paddingHorizontal: 5,
-    
   },
   seeMore: {
     alignSelf: 'flex-end',
     paddingHorizontal: 15,
-    paddingBottom:20
+    paddingBottom: 20,
   },
   seeMoreText: {
     fontSize: Typography.FONT_SIZE_16,

@@ -4,11 +4,13 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useTranslation} from 'react-i18next';
 import SwitchButton from '../../components/appointmentComponents/SwitchButton';
 import MyAppointmentCard from '../../components/appointmentComponents/MyAppointmentCard';
 import HeaderComponent from '../../components/headerComponent';
 import * as Colors from '../../constants/colors';
 const MyAppointments = props => {
+  const {t, i18n} = useTranslation();
   const [upComming, setUpComming] = useState(true);
   const [archive, setArchive] = useState(false);
   const data = [
@@ -46,7 +48,7 @@ const MyAppointments = props => {
       />
       <HeaderComponent
         Drawer={true}
-        title={'My Appointment'}
+        title={t('common:My_Appointment')}
         navigation={props.navigation}
       />
       <SwitchButton
@@ -54,8 +56,8 @@ const MyAppointments = props => {
         swicthSelected={archive}
         toggleSwitch={() => fetchUpcomming()}
         switchToggle={() => fetchArchive()}
-        defaultSelectedText={'Upcomming'}
-        swicthSelectedText={'Archive'}
+        defaultSelectedText={t('common:Upcomming')}
+        swicthSelectedText={t('common:Archive')}
       />
       <FlatList
         data={data}

@@ -6,15 +6,19 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useTranslation} from 'react-i18next';
 import HeaderComponent from '../components/headerComponent';
-const PrivacyPolicy = (props) => {
+const PrivacyPolicy = props => {
+  const {t, i18n} = useTranslation();
   return (
     <View style={styles.container}>
-    <HeaderComponent Drawer={true} title={"Privacy Policy"} navigation={props.navigation}/>
+      <HeaderComponent
+        Drawer={true}
+        title={t('common:Privacy_Policy')}
+        navigation={props.navigation}
+      />
       <View style={styles.midContainer}>
-        <Text style={styles.text}>
-          {`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud`}
-        </Text>
+        <Text style={styles.text}>{t('common:Privacy_Policy_Text')}</Text>
       </View>
     </View>
   );
@@ -31,8 +35,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: Typography.FONT_SIZE_16,
-    fontFamily:"OpenSans-Regular",
-    lineHeight:20,
+    fontFamily: 'OpenSans-Regular',
+    lineHeight: 20,
     color: Colors.Gray44,
   },
 });

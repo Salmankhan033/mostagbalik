@@ -5,23 +5,22 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useTranslation} from 'react-i18next';
 import * as Typography from './../src/constants/typography';
 import * as Colors from './../src/constants/colors';
 
 const SwiperComponent = () => {
+  const {t, i18n} = useTranslation();
   return (
     // <SafeAreaView>
     <View style={{backgroundColor: Colors.White}}>
       <FastImage style={styles.img} source={require('./../src/assets/1.png')} />
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>
-          {'Get your educational consultancy with us'}
-        </Text>
+        <Text style={styles.title}>{t('common:Educational_Consultancy')}</Text>
       </View>
       <View style={styles.titleContainer}>
         <Text style={styles.description}>
-          Get an overview of how you are performing and motivate yourself to
-          achieve even moew.
+          {t('common:Educational_Consultancy_Des')}
         </Text>
       </View>
     </View>

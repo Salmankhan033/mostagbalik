@@ -13,7 +13,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-
+import {useTranslation} from 'react-i18next';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import * as Colors from '../../constants/colors';
@@ -24,18 +24,19 @@ import ModalListView from '../../components/ModalListView';
 import RenderCard from '../../components/RenderCard';
 import HeaderComponent from '../../components/headerComponent';
 const NextBookAppointments = props => {
+  const {t, i18n} = useTranslation();
   let type = props.route?.params ? props.route.params.type : '';
   const [appointmentsVisibility, setAppointmentsVisibility] = useState(false);
   const [mobileNo, setMobileNo] = useState('');
-  const [purpose, setPurpose] = useState('Abroad Studies');
+  const [purpose, setPurpose] = useState(t('common:Abroad_Studies'));
   const data = [
-    {title: 'Abroad Studies'},
-    {title: 'Career Pursuing'},
-    {title: 'Future Studies'},
-    {title: 'Abroad Studies 3'},
-    {title: 'Scholarships'},
-    {title: 'Abroad Scholarships'},
-    {title: 'Other'},
+    {title: t('common:Abroad_Studies')},
+    {title: t('common:Career_Pursuing')},
+    {title: t('common:Future_Studies')},
+
+    {title: t('common:Scholarships')},
+    {title: t('common:Abroad_Scholarships')},
+    {title: t('common:Other')},
   ];
   const onPurposeData = item => {
     setPurpose(item);
@@ -51,14 +52,13 @@ const NextBookAppointments = props => {
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
       <HeaderComponent
         navigation={props.navigation}
-        title={'Book Appointment'}
+        title={t('common:Book_Appointment')}
       />
       <View style={styles.mainContainer}>
         <View style={styles.container}>
-          <Text style={styles.txt}>PURPOSE OF VISIT</Text>
+          <Text style={styles.txt}>{t('common:PURPOSE_OF_VISIT')}</Text>
           <RepeatCard
             type={false}
-            lable="Start Time"
             onPress={() => setAppointmentsVisibility(true)}
             icon={true}
             bodyText={purpose}
@@ -72,22 +72,22 @@ const NextBookAppointments = props => {
                   renderData={item.title}
                   selectedData={onPurposeData}
                   date={data}
-                  typeCB={'PURPOSE OF VISIT'}
+                  typeCB={t('common:PURPOSE_OF_VISIT')}
                 />
               )}
-              title={'PURPOSE OF VISIT'}
+              title={t('common:PURPOSE_OF_VISIT')}
               visiblity={appointmentsVisibility}
               changeVisibility={() => setAppointmentsVisibility(false)}
             />
           )}
 
-          <Text style={styles.txt}>NOTE</Text>
+          <Text style={styles.txt}>{t('common:NOTE')}</Text>
           <TextInput multiline numberOfLines={4} style={styles.input} />
           {type ? null : (
             <>
-              <Text style={styles.txt}>MOBILE NUMBER</Text>
+              <Text style={styles.txt}>{t('common:MOBILE_NUMBER')}</Text>
               <TextInput
-                placeholder="MOBILE NUMBER"
+                placeholder={t('common:MOBILE_NUMBER')}
                 style={styles.inputs}
                 keyboardType={'phone-pad'}
                 value={mobileNo}
