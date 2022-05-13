@@ -43,13 +43,16 @@ const NextBookAppointments = props => {
     setAppointmentsVisibility(false);
   };
   const [isModalVisible, setModalVisible] = useState(false);
-  
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
   return (
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
-      <HeaderComponent navigation={props.navigation} title={"Book Appointment"}/>
+      <HeaderComponent
+        navigation={props.navigation}
+        title={'Book Appointment'}
+      />
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <Text style={styles.txt}>PURPOSE OF VISIT</Text>
@@ -137,8 +140,8 @@ const styles = StyleSheet.create({
   txt: {
     height: hp('4%'),
     fontSize: Typography.FONT_SIZE_16,
-    color: Colors.lightGray,
-    fontFamily:"OpenSans-Medium",
+    color: Colors.text,
+    fontFamily: 'OpenSans-Medium',
     textAlignVertical: 'center',
     marginTop: hp('2%'),
   },

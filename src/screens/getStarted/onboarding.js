@@ -21,7 +21,7 @@ const Onboarding = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
       <View>
-        <StatusBar backgroundColor={Colors.Curious_Blue} translucent />
+        <StatusBar backgroundColor={Colors.statusBar2} translucent />
         <View style={styles.wrapper}>
           <Swiper
             style={styles.wrapper}
@@ -51,13 +51,13 @@ export default Onboarding;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: windowHeight >= 850 ? hp('82%') : hp('88%'),
+    height: windowHeight >= 850 ? hp('82%') : hp('92%'),
     backgroundColor: Colors.White,
   },
   buttonContainer: {
     paddingHorizontal: 20,
     position: 'absolute',
-    bottom: 20,
+    bottom: Platform.OS == 'ios' ? 35 : 5,
     right: 10,
     left: 10,
   },

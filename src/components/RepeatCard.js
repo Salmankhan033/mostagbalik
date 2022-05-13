@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: wp('5%'),
     height: hp('5%'),
-    alignSelf:'center'
+    alignSelf: 'center',
   },
   inputStylesIcon: {
     width: wp('77%'),
-    color: Colors.Black,
+    color: '#999999',
     fontSize: Typography.FONT_SIZE_14,
     // fontFamily: Typography.FONT_FAMILY_BOLD,
     justifyContent: 'center',
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   inputStyles: {
     width: wp('77%'),
-    color: Colors.Black,
+    color: '#999999',
     fontSize: Typography.FONT_SIZE_12,
     justifyContent: 'center',
     alignSelf: 'center',

@@ -49,8 +49,27 @@ const CustomDrawer = props => {
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
+      <View style={{paddingLeft: 20}}>
+        <TouchableOpacity onPress={() => {}}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <FastImage
+              style={{width: wp('5%'), height: hp('5%')}}
+              resizeMode={'contain'}
+              source={require('../assets/langauge.png')}
+            />
+            <Text
+              style={{
+                fontSize: Typography.FONT_SIZE_16,
+                fontFamily: 'OpenSans-Medium',
+                marginLeft: wp('2%'),
+              }}>
+              Change Language
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
       <View style={{padding: 20}}>
-        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
+        <TouchableOpacity onPress={() => {}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <FastImage
               style={{width: wp('5%'), height: hp('5%')}}
@@ -63,6 +82,7 @@ const CustomDrawer = props => {
                 fontSize: Typography.FONT_SIZE_18,
                 color: Colors.light_blue,
                 marginLeft: wp('2%'),
+                fontFamily: 'OpenSans-Medium',
               }}>
               Logout
             </Text>

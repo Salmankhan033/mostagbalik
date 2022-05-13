@@ -34,7 +34,7 @@ const Home = props => {
   const [lng, setLng] = useState('en');
   const [addlng, setaddLng] = useState(false);
   const navigation = useNavigation();
-  
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -55,7 +55,7 @@ const Home = props => {
 
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
-      <StatusBar backgroundColor={Colors.Curious_Blue} translucent />
+      <StatusBar backgroundColor={Colors.statusBar2} translucent />
       {/* <View style={{justifyContent:'space-around',flexDirection:'row',marginTop:15}}>
   
   <TouchableOpacity
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 1.5,
-    elevation: 2,
+    elevation: 6,
     marginVertical: 15,
     padding: 15,
     borderBottomWidth: 8,

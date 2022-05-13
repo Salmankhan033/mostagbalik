@@ -125,7 +125,7 @@ function MyDrawer() {
           ),
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Change Language"
         component={ChangeLanguage}
         
@@ -139,7 +139,7 @@ function MyDrawer() {
             />
           ),
         }}
-      />
+      /> */}
     </Drawer.Navigator>
   );
 }
@@ -182,28 +182,32 @@ const Navigations = () => {
         options={{
           headerShown: false,
           gestureEnabled: false,
-          title: 'My Appointment'}}
+          title: 'My Appointment',
+        }}
       />
       <Stack.Screen
         name="NextAppointment"
         component={NextBookAppointments}
         options={{
           headerShown: false,
-          title: 'Book Appointment'}}
+          title: 'Book Appointment',
+        }}
       />
       <Stack.Screen
         name="OTPVerification"
         component={OTPVerification}
         options={{
           headerShown: false,
-          title: null}}
+          title: null,
+        }}
       />
       <Stack.Screen
         name="AppointmentsConfirmation"
         component={AppointmentsConfirmation}
         options={{
-          headerShown:false,
-          title: 'Appointment Confirmation'}}
+          headerShown: false,
+          title: 'Appointment Confirmation',
+        }}
       />
     </Stack.Navigator>
   );

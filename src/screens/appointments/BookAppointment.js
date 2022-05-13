@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   Platform,
+  StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -52,12 +53,22 @@ const BookAppointment = props => {
             : null,
         ]}
         onPress={() => setSelectedTimeSlot(item.time)}>
-        <Text style={[styles.timeTxt,{color:item.time == selectedTimeSlot ? Colors.White : Colors.Black}]}>{item.time}</Text>
+        <Text
+          style={[
+            styles.timeTxt,
+            {
+              color:
+                item.time == selectedTimeSlot ? Colors.White : Colors.Black,
+            },
+          ]}>
+          {item.time}
+        </Text>
       </TouchableOpacity>
     );
   };
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
+      <StatusBar backgroundColor={Colors.statusBar} translucent />
       <HeaderComponent
         navigation={props.navigation}
         title={'Book Appointment'}
@@ -91,7 +102,7 @@ const BookAppointment = props => {
           />
         </View>
         <View style={styles.BottomContainer}>
-          <Text style={styles.headerTxt}>{"AVAILABLE SLOTS"}</Text>
+          <Text style={styles.headerTxt}>{'AVAILABLE SLOTS'}</Text>
           <FlatList
             data={data}
             renderItem={renderItem}
@@ -124,10 +135,10 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     fontSize: Typography.FONT_SIZE_14,
-    fontFamily:"OpenSans-Regular",
-    lineHeight:19,
+    fontFamily: 'OpenSans-Regular',
+    lineHeight: 19,
     color: Colors.Gray44,
-    marginBottom:10,
+    marginBottom: 10,
     marginHorizontal: hp('2%'),
   },
   timeView: {
@@ -140,8 +151,8 @@ const styles = StyleSheet.create({
   },
   timeTxt: {
     fontSize: Typography.FONT_SIZE_16,
-    fontFamily:"OpenSans-Medium",
-    lineHeight:22,
+    fontFamily: 'OpenSans-Medium',
+    lineHeight: 22,
     textAlign: 'center',
     justifyContent: 'center',
   },

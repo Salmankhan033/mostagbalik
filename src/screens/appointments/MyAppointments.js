@@ -1,4 +1,4 @@
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, StatusBar} from 'react-native';
 import React, {useState} from 'react';
 import {
   heightPercentageToDP as hp,
@@ -7,8 +7,8 @@ import {
 import SwitchButton from '../../components/appointmentComponents/SwitchButton';
 import MyAppointmentCard from '../../components/appointmentComponents/MyAppointmentCard';
 import HeaderComponent from '../../components/headerComponent';
-
-const MyAppointments = (props) => {
+import * as Colors from '../../constants/colors';
+const MyAppointments = props => {
   const [upComming, setUpComming] = useState(true);
   const [archive, setArchive] = useState(false);
   const data = [
@@ -39,13 +39,22 @@ const MyAppointments = (props) => {
   };
   return (
     <View style={{backgroundColor: 'white'}}>
-    <HeaderComponent Drawer={true} title={"My Appointment"} navigation={props.navigation}/>
+      <StatusBar
+        animated={true}
+        backgroundColor={Colors.Gray44}
+        barStyle="light-content"
+      />
+      <HeaderComponent
+        Drawer={true}
+        title={'My Appointment'}
+        navigation={props.navigation}
+      />
       <SwitchButton
         defaultSelected={upComming}
         swicthSelected={archive}
         toggleSwitch={() => fetchUpcomming()}
         switchToggle={() => fetchArchive()}
-        defaultSelectedText={'Up Comming'}
+        defaultSelectedText={'Upcomming'}
         swicthSelectedText={'Archive'}
       />
       <FlatList
