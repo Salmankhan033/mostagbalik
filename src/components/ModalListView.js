@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cancelIcon: {
-    width: wp('5%'),
-    height: wp('5%'),
+    width: wp('4%'),
+    height: wp('4%'),
   },
   cancelTouch: {
     justifyContent: 'center',
@@ -88,20 +88,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems:"center",
-    marginBottom:8
+    marginBottom:8 
   },
   title: {
     color: Colors.Black,
-    fontSize: Typography.FONT_SIZE_18,
+    fontSize: Typography.FONT_SIZE_16,
     fontFamily:"OpenSans-Bold",
-    lineHeight:26,
+    lineHeight:24,
     
   },
   normalTitle: {
     color: Colors.Black,
-    fontWeight: Typography.FONT_WEIGHT_BOLD,
     fontSize: Typography.FONT_SIZE_16,
-    fontFamily: Typography.FONT_FAMILY_BOLD,
+    fontFamily:"OpenSans-Bold",
+    lineHeight:24,
     padding: 10,
   },
 });
