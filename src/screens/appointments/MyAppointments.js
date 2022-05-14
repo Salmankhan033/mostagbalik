@@ -38,7 +38,7 @@ const MyAppointments = props => {
     );
   };
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={{flex:1,backgroundColor: 'white'}}>
       <StatusBar
         animated={true}
         backgroundColor={Colors.Gray44}
@@ -59,6 +59,7 @@ const MyAppointments = props => {
       />
       <FlatList
         data={data}
+        showsVerticalScrollIndicator={false}
         renderItem={renderItem}
         key={index => index}
         keyExtractor={(item, index) => index}
