@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.light_blue,
     backgroundColor: Colors.White,
     shadowColor: Colors.Black,
-    borderRadius: 15,
+    borderRadius: 12,
     marginHorizontal: 10,
     shadowOffset: {
       width: 0,

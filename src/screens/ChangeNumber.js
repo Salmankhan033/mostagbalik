@@ -26,7 +26,7 @@ const ChangeNumber = (props) => {
       <View style={styles.container}>
         <Text style={styles.txt}>{"MOBILE NUMBER"}</Text>
         <TextInput
-          placeholder="MOBILE NUMBER"
+          // placeholder="MOBILE NUMBER"
           style={styles.inputs}
           keyboardType={'phone-pad'}
           value={mobileNo}

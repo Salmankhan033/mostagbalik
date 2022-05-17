@@ -87,7 +87,7 @@ const NextBookAppointments = props => {
             <>
               <Text style={styles.txt}>MOBILE NUMBER</Text>
               <TextInput
-                placeholder="MOBILE NUMBER"
+                // placeholder="MOBILE NUMBER"
                 style={styles.inputs}
                 keyboardType={'phone-pad'}
                 value={mobileNo}
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     height: hp('4%'),
-    fontSize: Typography.FONT_SIZE_16,
+    fontSize: Typography.FONT_SIZE_14,
     color: Colors.text,
     fontFamily: 'OpenSans-Medium',
     textAlignVertical: 'center',

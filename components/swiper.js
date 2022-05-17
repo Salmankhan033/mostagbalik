@@ -8,11 +8,11 @@ import {
 import * as Typography from './../src/constants/typography';
 import * as Colors from './../src/constants/colors';
 
-const SwiperComponent = () => {
+const SwiperComponent = ({image}) => {
   return (
     // <SafeAreaView>
     <View style={{backgroundColor: Colors.White}}>
-      <FastImage style={styles.img} source={require('./../src/assets/1.png')} />
+      <FastImage style={styles.img} source={image} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>
           {'Get your educational consultancy with us'}

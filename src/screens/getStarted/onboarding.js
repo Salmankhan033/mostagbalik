@@ -30,9 +30,9 @@ const Onboarding = ({navigation}) => {
             loop={false}
             dot={<View style={styles.dot} />}
             activeDot={<View style={styles.activeDot} />}>
-            <SwiperComponent />
-            <SwiperComponent />
-            <SwiperComponent />
+            <SwiperComponent image={require('../../assets/1.png')} />
+            <SwiperComponent image={require('../../assets/2.png')}/>
+            <SwiperComponent image={require('../../assets/3.png')}/>
           </Swiper>
         </View>
       </View>
@@ -51,7 +51,7 @@ export default Onboarding;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: windowHeight >= 850 ? hp('82%') : hp('92%'),
+    height: windowHeight >= 850 ? hp('82%') : hp('85%'),
     backgroundColor: Colors.White,
   },
   buttonContainer: {
