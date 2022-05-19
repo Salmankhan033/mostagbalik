@@ -14,6 +14,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {useTranslation} from 'react-i18next';
+import axios from 'axios';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import * as Colors from '../../constants/colors';
@@ -23,12 +24,20 @@ import RepeatCard from '../../components/RepeatCard';
 import ModalListView from '../../components/ModalListView';
 import RenderCard from '../../components/RenderCard';
 import HeaderComponent from '../../components/headerComponent';
+import ShowAlert from '../../components/ShowAlert';
+import {API} from '../../constants/helper';
 const NextBookAppointments = props => {
   const {t, i18n} = useTranslation();
   let type = props.route?.params ? props.route.params.type : '';
+  let AppointmentTime = props.route?.params
+    ? props.route.params.AppointmentTime
+    : '';
+
   const [appointmentsVisibility, setAppointmentsVisibility] = useState(false);
   const [mobileNo, setMobileNo] = useState('');
   const [purpose, setPurpose] = useState(t('common:Abroad_Studies'));
+  const [loading, setLoading] = useState(false);
+
   const data = [
     {title: t('common:Abroad_Studies')},
     {title: t('common:Career_Pursuing')},
@@ -38,6 +47,47 @@ const NextBookAppointments = props => {
     {title: t('common:Abroad_Scholarships')},
     {title: t('common:Other')},
   ];
+
+  const doRegisterMobileNo = async () => {
+    let _data = {
+      country_code: '+965',
+      mobile: mobileNo,
+      otp_type: 1,
+    };
+    try {
+      console.log('login Data..', _data);
+      setLoading(true);
+      await axios
+        .post(`${API}/auth/login`, {_data})
+        .then(response => {
+          setLoading(false);
+          console.log('acnakjcjkscbsjhcbhjs', response.data);
+          if (response.data.errors == false) {
+            props.navigation.navigate('OTPVerification', {
+              AppointmentTime,
+              MobileData: _data,
+            });
+          } else {
+            ShowAlert({
+              type: 'error',
+              description: 'Please Try Agin',
+            });
+          }
+        })
+        .catch(error => {
+          setLoading(false);
+
+          ShowAlert({
+            type: 'error',
+            description: error?.response?.data?.message,
+          });
+        });
+    } catch (error) {
+      setLoading(false);
+      ShowAlert({type: 'error', description: error?.response?.data?.message});
+    }
+  };
+
   const onPurposeData = item => {
     setPurpose(item);
 
@@ -100,10 +150,11 @@ const NextBookAppointments = props => {
       <View style={styles.btnContainer}>
         <Button
           title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
-          onPress={() =>
-            type
-              ? props.navigation.navigate('AppointmentsConfirmation')
-              : props.navigation.navigate('OTPVerification')
+          onPress={
+            () => doRegisterMobileNo()
+            // type
+            //   ? props.navigation.navigate('AppointmentsConfirmation')
+            //   : props.navigation.navigate('OTPVerification')
           }
         />
       </View>

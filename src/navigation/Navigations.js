@@ -3,6 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -26,6 +27,8 @@ import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import CustomDrawer from '../components/CustomDrawer';
+import {Provider} from 'react-redux';
+import store from '../store';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -55,6 +58,7 @@ function MyDrawer() {
           ),
         }}
       />
+
       <Drawer.Screen
         name="My Appointments"
         component={MyAppointments}
@@ -69,6 +73,7 @@ function MyDrawer() {
           ),
         }}
       />
+
       <Drawer.Screen
         name="Change Number"
         component={ChangeNumber}
@@ -146,70 +151,74 @@ function MyDrawer() {
 
 const Navigations = () => {
   return (
-    <Stack.Navigator initialRouteName="SplashScreen">
-      <Stack.Screen
-        name="SplashScreen"
-        component={SplashScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Onboarding"
-        component={Onboarding}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{headerShown: false}}
-      />
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <Stack.Navigator initialRouteName="SplashScreen">
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Onboarding"
+            component={Onboarding}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{headerShown: false}}
+          />
 
-      <Stack.Screen
-        name="Drawer"
-        component={MyDrawer}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="BookAppointment"
-        component={BookAppointment}
-        options={{
-          headerShown: false,
-          title: 'Book Appointment',
-        }}
-      />
-      <Stack.Screen
-        name="MyAppointment"
-        component={MyAppointments}
-        options={{
-          headerShown: false,
-          gestureEnabled: false,
-          title: 'My Appointment',
-        }}
-      />
-      <Stack.Screen
-        name="NextAppointment"
-        component={NextBookAppointments}
-        options={{
-          headerShown: false,
-          title: 'Book Appointment',
-        }}
-      />
-      <Stack.Screen
-        name="OTPVerification"
-        component={OTPVerification}
-        options={{
-          headerShown: false,
-          title: null,
-        }}
-      />
-      <Stack.Screen
-        name="AppointmentsConfirmation"
-        component={AppointmentsConfirmation}
-        options={{
-          headerShown: false,
-          title: 'Appointment Confirmation',
-        }}
-      />
-    </Stack.Navigator>
+          <Stack.Screen
+            name="Drawer"
+            component={MyDrawer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="BookAppointment"
+            component={BookAppointment}
+            options={{
+              headerShown: false,
+              title: 'Book Appointment',
+            }}
+          />
+          <Stack.Screen
+            name="MyAppointment"
+            component={MyAppointments}
+            options={{
+              headerShown: false,
+              gestureEnabled: false,
+              title: 'My Appointment',
+            }}
+          />
+          <Stack.Screen
+            name="NextAppointment"
+            component={NextBookAppointments}
+            options={{
+              headerShown: false,
+              title: 'Book Appointment',
+            }}
+          />
+          <Stack.Screen
+            name="OTPVerification"
+            component={OTPVerification}
+            options={{
+              headerShown: false,
+              title: null,
+            }}
+          />
+          <Stack.Screen
+            name="AppointmentsConfirmation"
+            component={AppointmentsConfirmation}
+            options={{
+              headerShown: false,
+              title: 'Appointment Confirmation',
+            }}
+          />
+        </Stack.Navigator>
+      </Provider>
+    </SafeAreaProvider>
   );
 };
 const styles = StyleSheet.create({

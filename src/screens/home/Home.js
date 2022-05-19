@@ -9,8 +9,11 @@ import {
   StatusBar,
   Dimensions,
 } from 'react-native';
-import React, {useState} from 'react';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
+import {connect} from 'react-redux';
+import {initData} from '../../actions/auth';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -26,6 +29,9 @@ import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
 import HeaderComponent from '../../components/headerComponent';
 import {useNavigation} from '@react-navigation/native';
+import ShowAlert from '../../components/ShowAlert';
+import {API} from '../../constants/helper';
+
 const windowHeight = Dimensions.get('window').height;
 
 const Home = props => {
@@ -33,7 +39,35 @@ const Home = props => {
   const {t, i18n} = useTranslation();
   const [lng, setLng] = useState('en');
   const [addlng, setaddLng] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+
+  // useEffect(async () => {
+  //   await doFetchInitData();
+  // }, []);
+
+  const doFetchInitData = async () => {
+    try {
+      setLoading(true);
+      await axios
+        .get(`${API}/init`)
+        .then(async response => {
+          // await props.onSaveInitData(response.data.data);
+          console.log('responce...', response.data.data);
+        })
+        .catch(error => {
+          setLoading(false);
+          console.log('error..');
+          ShowAlert({
+            type: 'error',
+            description: error?.response?.data?.message,
+          });
+        });
+    } catch (error) {
+      setLoading(false);
+      ShowAlert({type: 'error', description: error?.response?.data?.message});
+    }
+  };
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -77,7 +111,6 @@ const Home = props => {
 </View> */}
 
       <HeaderComponent Home={true} navigation={navigation} />
-
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <View style={styles.headerImg}>
           <FastImage
@@ -191,8 +224,6 @@ const Home = props => {
   );
 };
 
-export default Home;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.White,
@@ -298,3 +329,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 });
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSaveInitData: data => {
+      dispatch(initData(data));
+    },
+  };
+};
+
+export default connect(mapDispatchToProps)(Home);

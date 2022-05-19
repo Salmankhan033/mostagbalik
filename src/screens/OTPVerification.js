@@ -11,13 +11,67 @@ import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
 import HeaderComponent from '../components/headerComponent';
 import {useTranslation} from 'react-i18next';
+import axios from 'axios';
+
+import {API} from '../constants/helper';
+import ShowAlert from '../components/ShowAlert';
+
 const OTPVerification = props => {
+  let AppointmentTime = props.route?.params
+    ? props.route.params.AppointmentTime
+    : '';
+  let MobileData = props.route?.params ? props.route?.params?.MobileData : '';
   const {t, i18n} = useTranslation();
   const [isValidRequest, setIsValidRequest] = useState(false);
   const [code, setCode] = useState('');
   const [counter, SetCounter] = useState(60); // Set here your own timer configurable
   const [random, SetRandom] = useState(Math.random());
   const [disabled, setDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const doVerifyOTP = async () => {
+    console.log('first.....', MobileData);
+
+    let _data = {
+      country_code: MobileData.country_code,
+      mobile: MobileData.mobile,
+      otp_type: MobileData.otp_type,
+      otp: code,
+    };
+    console.log('date.....', _data);
+    try {
+      setLoading(true);
+      await axios
+        .post(`${API}/auth/login`, {_data})
+        .then(response => {
+          setLoading(false);
+          console.log('responce...', response.data);
+          // if (response?.data?.errors == 'false') {
+          // props.navigation.navigate('OTPVerification', {
+          //   AppointmentTime,
+          //   MobileData: _data,
+          // });
+          // } else {
+          //   ShowAlert({
+          //     type: 'error',
+          //     description: 'Please Try Agin',
+          //   });
+          // }
+        })
+        .catch(error => {
+          setLoading(false);
+
+          ShowAlert({
+            type: 'error',
+            description: error?.response?.data?.message,
+          });
+        });
+    } catch (error) {
+      setLoading(false);
+      ShowAlert({type: 'error', description: error?.response?.data?.message});
+    }
+  };
+
   const submitCode = length => {
     if (length < 5) {
       setIsValidRequest(false);
@@ -73,10 +127,11 @@ const OTPVerification = props => {
       <View style={styles.btnView}>
         <Button
           title={'VERIFY'}
-          onPress={() =>
-            props.navigation.push('NextAppointment', {
-              type: 'otp',
-            })
+          onPress={
+            () => doVerifyOTP()
+            // props.navigation.push('NextAppointment', {
+            //   type: 'otp',
+            // })
           }
         />
       </View>
