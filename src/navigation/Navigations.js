@@ -27,6 +27,8 @@ import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import CustomDrawer from '../components/CustomDrawer';
+import {Provider} from 'react-redux';
+import store from '../store';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();

@@ -120,7 +120,6 @@ const Home = props => {
 </View> */}
 
       <HeaderComponent Home={true} navigation={navigation} />
-
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Loader visible={loading} />
         <View style={styles.headerImg}>
