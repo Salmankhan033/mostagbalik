@@ -4,7 +4,7 @@ export const API =
 export const getHeaders = async props => {
   return {
     headers: {
-      authorization: `bearer ${props.userData.accessToken}`,
+      authorization: `bearer ${props}`,
     },
   };
 };

@@ -1,35 +1,25 @@
-export const defaultState = {
+import {createSlice} from '@reduxjs/toolkit';
+export const initialState = {
   userData: {},
-  accessToken: '',
   init_Data: {},
 };
-export default function reducer(state = defaultState, action) {
-  switch (action.type) {
-    case 'STORE_USER':
-      let data = action.payload;
-      return Object.assign({}, state, {
-        userData: data,
-      });
 
-    case 'LOGOUT':
-      return Object.assign({}, state, {
-        userData: {},
-        accessToken: '',
-      });
-    case 'ACCESS_TOKEN':
-      let token = action.payload;
-      return Object.assign({}, state, {
-        accessToken: token,
-      });
-
-    case 'ADD_INIT':
-      let initData = action.payload;
-      console.log('redux..', initData);
-      return Object.assign({}, state, {
-        init_Data: initData,
-      });
-
-    default:
-      return state;
-  }
-}
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    getUser: (state, action) => {
+      state.userData = action.payload;
+      console.log('yesss...', action.payload);
+    },
+    getInitData: (state, action) => {
+      state.init_Data = action.payload;
+    },
+    logOut: (state, action) => {
+      state.init_Data = {};
+      state.userData = {};
+    },
+  },
+});
+export const {logOut, getInitData, getUser} = userSlice.actions;
+export default userSlice.reducer;

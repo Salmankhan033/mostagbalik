@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import React, {useState} from 'react';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import CountDown from 'react-native-countdown-component';
@@ -16,11 +16,17 @@ import axios from 'axios';
 import {API} from '../constants/helper';
 import ShowAlert from '../components/ShowAlert';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {getUser, getInitData} from '../reducers/auth';
+
 const OTPVerification = props => {
   let AppointmentTime = props.route?.params
     ? props.route.params.AppointmentTime
     : '';
   let MobileData = props.route?.params ? props.route?.params?.MobileData : '';
+  let purpose_id = props.route?.params ? props.route?.params?.purpose_id : '';
+  let note = props.route?.params ? props.route?.params?.note : '';
+
   const {t, i18n} = useTranslation();
   const [isValidRequest, setIsValidRequest] = useState(false);
   const [code, setCode] = useState('');
@@ -28,35 +34,38 @@ const OTPVerification = props => {
   const [random, SetRandom] = useState(Math.random());
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const doVerifyOTP = async () => {
-    console.log('first.....', MobileData);
-
     let _data = {
       country_code: MobileData.country_code,
       mobile: MobileData.mobile,
       otp_type: MobileData.otp_type,
-      otp: code,
+      otp: parseInt(code),
+      platform: Platform.OS,
     };
-    console.log('date.....', _data);
+
     try {
       setLoading(true);
       await axios
-        .post(`${API}/auth/login`, {_data})
-        .then(response => {
+        .post(`${API}/auth/login`, _data)
+        .then(async response => {
           setLoading(false);
-          console.log('responce...', response.data);
-          // if (response?.data?.errors == 'false') {
-          // props.navigation.navigate('OTPVerification', {
-          //   AppointmentTime,
-          //   MobileData: _data,
-          // });
-          // } else {
-          //   ShowAlert({
-          //     type: 'error',
-          //     description: 'Please Try Agin',
-          //   });
-          // }
+
+          await dispatch(getUser(response.data.data));
+
+          if (response?.data) {
+            props.navigation.navigate('AppointmentsConfirmation', {
+              AppointmentTime,
+              note: note,
+              purpose_id: purpose_id,
+            });
+          } else {
+            ShowAlert({
+              type: 'error',
+              description: 'Please Try Agin',
+            });
+          }
         })
         .catch(error => {
           setLoading(false);
@@ -91,7 +100,9 @@ const OTPVerification = props => {
       <HeaderComponent navigation={props.navigation} />
       <View style={styles.headerTextView}>
         <Text style={styles.headerText}>{t('common:Verification_Code')}</Text>
-        <Text style={styles.bodyText}>{t('common:OTP_Body')} 65893265`</Text>
+        <Text style={styles.bodyText}>
+          {t('common:OTP_Body')} {MobileData.mobile}
+        </Text>
       </View>
 
       <OTPInputView

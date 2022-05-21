@@ -30,8 +30,7 @@ export default {
   About_Us: 'About Us',
   About_Description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud`,
   Thanks_for_booking: 'Thanks for bokking!',
-  Thanks_for_Booking_body: ` Your appointment has been{'\n'}booked successfully on{'\n'} 20 April
-2022, 10:30 am`,
+  Thanks_for_Booking_body: ` Your appointment has been \n booked successfully on \n `,
   Appointment_Confirmation: 'Appointment Confirmation',
   Change_Number: 'Change Number',
   MOBILE_NUMBER: 'MOBILE NUMBER',

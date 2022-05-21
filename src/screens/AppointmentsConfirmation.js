@@ -7,7 +7,7 @@ import {
   TextInput,
   Platform,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   heightPercentageToDP as hp,
@@ -19,9 +19,57 @@ import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import Button from '../../components/Button';
 import HeaderComponent from '../components/headerComponent';
+import {API, getHeaders} from '../constants/helper';
+import ShowAlert from '../components/ShowAlert';
+import moment from 'moment';
+import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import {getUser, getInitData} from '../reducers/auth';
 
 const AppointmentsConfirmation = props => {
+  let AppointmentTime = props.route?.params
+    ? props.route.params.AppointmentTime
+    : '';
+  let purpose_id = props.route?.params ? props.route?.params?.purpose_id : '';
+  let note = props.route?.params ? props.route?.params?.note : '';
+  const selector = useSelector(getUser);
+  const [loading, setLoading] = useState(false);
+
   const {t, i18n} = useTranslation();
+
+  const doAddAppointment = async () => {
+    const header = await getHeaders(
+      selector.payload.user.userData.access_token,
+    );
+    let _data = {
+      purpose_id: purpose_id,
+      note: note,
+      start_datetime: AppointmentTime.startTime,
+      end_datetime: AppointmentTime.endTime,
+    };
+    console.log(API, 'user.....', _data, 'header....', header);
+    try {
+      setLoading(true);
+      await axios
+        .post(`${API}/booking/store`, _data, header)
+        .then(response => {
+          setLoading(false);
+          console.log('responce...', response);
+        })
+        .catch(error => {
+          setLoading(false);
+
+          ShowAlert({
+            type: 'error',
+            description: error?.response?.data?.message,
+          });
+        });
+    } catch (error) {
+      setLoading(false);
+      ShowAlert({type: 'error', description: error?.response?.data?.message});
+    }
+  };
+
   return (
     <>
       <HeaderComponent
@@ -45,13 +93,14 @@ const AppointmentsConfirmation = props => {
           </Text>
           <Text style={styles.bodyTxt}>
             {t('common:Thanks_for_Booking_body')}
+            {moment(AppointmentTime.startTime).format('DD MMM yyyy, hh:mm a')}
           </Text>
         </View>
         <View style={styles.btnContainer}>
           <Button
             title={'ADD TO CALENDAR'}
             leftIcon={require('../assets/calenderIcon.png')}
-            onPress={() => {}}
+            onPress={() => doAddAppointment()}
           />
         </View>
       </View>

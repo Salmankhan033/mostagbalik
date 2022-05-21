@@ -7,7 +7,7 @@ import {
   TextInput,
   Platform,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   heightPercentageToDP as hp,
@@ -26,6 +26,9 @@ import RenderCard from '../../components/RenderCard';
 import HeaderComponent from '../../components/headerComponent';
 import ShowAlert from '../../components/ShowAlert';
 import {API} from '../../constants/helper';
+import {useSelector, useDispatch} from 'react-redux';
+import {getUser, getInitData} from '../../reducers/auth';
+
 const NextBookAppointments = props => {
   const {t, i18n} = useTranslation();
   let type = props.route?.params ? props.route.params.type : '';
@@ -35,37 +38,41 @@ const NextBookAppointments = props => {
 
   const [appointmentsVisibility, setAppointmentsVisibility] = useState(false);
   const [mobileNo, setMobileNo] = useState('');
-  const [purpose, setPurpose] = useState(t('common:Abroad_Studies'));
+  const [purpose, setPurpose] = useState('');
+  const [selectedpurpose, setselectedpurpose] = useState({});
+  const [purposeData, setPurposeData] = useState('');
   const [loading, setLoading] = useState(false);
+  const [note, setNote] = useState('');
 
-  const data = [
-    {title: t('common:Abroad_Studies')},
-    {title: t('common:Career_Pursuing')},
-    {title: t('common:Future_Studies')},
+  const initialData = useSelector(getInitData);
+  const selector = useSelector(getUser);
 
-    {title: t('common:Scholarships')},
-    {title: t('common:Abroad_Scholarships')},
-    {title: t('common:Other')},
-  ];
-
+  useEffect(() => {
+    setPurposeData(initialData.payload.user.init_Data.purposes);
+  }, []);
   const doRegisterMobileNo = async () => {
+    if (mobileNo == '' && purpose.id == undefined && note == '') {
+      alert('fuck');
+      return;
+    }
     let _data = {
       country_code: '+965',
       mobile: mobileNo,
       otp_type: 1,
     };
     try {
-      console.log('login Data..', _data);
       setLoading(true);
       await axios
-        .post(`${API}/auth/login`, {_data})
+        .post(`${API}/auth/login`, _data)
         .then(response => {
           setLoading(false);
-          console.log('acnakjcjkscbsjhcbhjs', response.data);
+
           if (response.data.errors == false) {
             props.navigation.navigate('OTPVerification', {
               AppointmentTime,
               MobileData: _data,
+              purpose_id: purpose.id,
+              note: note,
             });
           } else {
             ShowAlert({
@@ -90,13 +97,19 @@ const NextBookAppointments = props => {
 
   const onPurposeData = item => {
     setPurpose(item);
-
     setAppointmentsVisibility(false);
   };
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+  };
+  const onAppointment = () => {
+    props.navigation.navigate('AppointmentsConfirmation', {
+      AppointmentTime,
+      note: note,
+      purpose_id: purpose.id,
+    });
   };
   return (
     <KeyboardAwareScrollView style={{backgroundColor: Colors.White}}>
@@ -111,17 +124,17 @@ const NextBookAppointments = props => {
             type={false}
             onPress={() => setAppointmentsVisibility(true)}
             icon={true}
-            bodyText={purpose}
+            bodyText={purpose == '' ? 'Select Purpose Of Visit' : purpose.name}
           />
           {appointmentsVisibility == true && (
             <ModalListView
-              data={data}
+              data={purposeData}
               renderItem={item => (
                 <RenderCard
                   realData={purpose}
-                  renderData={item.title}
+                  renderData={item}
                   selectedData={onPurposeData}
-                  date={data}
+                  date={purposeData}
                   typeCB={t('common:PURPOSE_OF_VISIT')}
                 />
               )}
@@ -132,8 +145,13 @@ const NextBookAppointments = props => {
           )}
 
           <Text style={styles.txt}>{t('common:NOTE')}</Text>
-          <TextInput multiline numberOfLines={4} style={styles.input} />
-          {type ? null : (
+          <TextInput
+            multiline
+            numberOfLines={4}
+            style={styles.input}
+            onChangeText={text => setNote(text)}
+          />
+          {selector.payload.user.userData.access_token ? null : (
             <>
               <Text style={styles.txt}>{t('common:MOBILE_NUMBER')}</Text>
               <TextInput
@@ -151,7 +169,10 @@ const NextBookAppointments = props => {
         <Button
           title={type ? 'CONFIRM BOOKING' : 'CONTINUE'}
           onPress={
-            () => doRegisterMobileNo()
+            () =>
+              selector.payload.user.userData.access_token
+                ? onAppointment()
+                : doRegisterMobileNo()
             // type
             //   ? props.navigation.navigate('AppointmentsConfirmation')
             //   : props.navigation.navigate('OTPVerification')

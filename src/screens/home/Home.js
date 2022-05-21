@@ -31,6 +31,9 @@ import HeaderComponent from '../../components/headerComponent';
 import {useNavigation} from '@react-navigation/native';
 import ShowAlert from '../../components/ShowAlert';
 import {API} from '../../constants/helper';
+import Loader from '../../components/Spinner';
+import {useSelector, useDispatch} from 'react-redux';
+import {getUser, getInitData} from '../../reducers/auth';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -42,9 +45,13 @@ const Home = props => {
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
-  // useEffect(async () => {
-  //   await doFetchInitData();
-  // }, []);
+  const selector = useSelector(getInitData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    doFetchInitData();
+    // console.log('result...', result);
+  }, []);
 
   const doFetchInitData = async () => {
     try {
@@ -52,8 +59,10 @@ const Home = props => {
       await axios
         .get(`${API}/init`)
         .then(async response => {
+          setLoading(false);
+          dispatch(getInitData(response.data.data));
           // await props.onSaveInitData(response.data.data);
-          console.log('responce...', response.data.data);
+          // console.log('responce...', response.data.data);
         })
         .catch(error => {
           setLoading(false);
@@ -111,7 +120,9 @@ const Home = props => {
 </View> */}
 
       <HeaderComponent Home={true} navigation={navigation} />
+
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <Loader visible={loading} />
         <View style={styles.headerImg}>
           <FastImage
             style={{height: '100%', width: '100%'}}
@@ -330,12 +341,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSaveInitData: data => {
-      dispatch(initData(data));
-    },
-  };
-};
-
-export default connect(mapDispatchToProps)(Home);
+export default Home;

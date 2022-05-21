@@ -27,8 +27,6 @@ import FastImage from 'react-native-fast-image';
 import * as Colors from '../constants/colors';
 import * as Typography from '../constants/typography';
 import CustomDrawer from '../components/CustomDrawer';
-import {Provider} from 'react-redux';
-import store from '../store';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -152,72 +150,70 @@ function MyDrawer() {
 const Navigations = () => {
   return (
     <SafeAreaProvider>
-      <Provider store={store}>
-        <Stack.Navigator initialRouteName="SplashScreen">
-          <Stack.Screen
-            name="SplashScreen"
-            component={SplashScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Onboarding"
-            component={Onboarding}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{headerShown: false}}
-          />
+      <Stack.Navigator initialRouteName="SplashScreen">
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        />
 
-          <Stack.Screen
-            name="Drawer"
-            component={MyDrawer}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="BookAppointment"
-            component={BookAppointment}
-            options={{
-              headerShown: false,
-              title: 'Book Appointment',
-            }}
-          />
-          <Stack.Screen
-            name="MyAppointment"
-            component={MyAppointments}
-            options={{
-              headerShown: false,
-              gestureEnabled: false,
-              title: 'My Appointment',
-            }}
-          />
-          <Stack.Screen
-            name="NextAppointment"
-            component={NextBookAppointments}
-            options={{
-              headerShown: false,
-              title: 'Book Appointment',
-            }}
-          />
-          <Stack.Screen
-            name="OTPVerification"
-            component={OTPVerification}
-            options={{
-              headerShown: false,
-              title: null,
-            }}
-          />
-          <Stack.Screen
-            name="AppointmentsConfirmation"
-            component={AppointmentsConfirmation}
-            options={{
-              headerShown: false,
-              title: 'Appointment Confirmation',
-            }}
-          />
-        </Stack.Navigator>
-      </Provider>
+        <Stack.Screen
+          name="Drawer"
+          component={MyDrawer}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="BookAppointment"
+          component={BookAppointment}
+          options={{
+            headerShown: false,
+            title: 'Book Appointment',
+          }}
+        />
+        <Stack.Screen
+          name="MyAppointment"
+          component={MyAppointments}
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+            title: 'My Appointment',
+          }}
+        />
+        <Stack.Screen
+          name="NextAppointment"
+          component={NextBookAppointments}
+          options={{
+            headerShown: false,
+            title: 'Book Appointment',
+          }}
+        />
+        <Stack.Screen
+          name="OTPVerification"
+          component={OTPVerification}
+          options={{
+            headerShown: false,
+            title: null,
+          }}
+        />
+        <Stack.Screen
+          name="AppointmentsConfirmation"
+          component={AppointmentsConfirmation}
+          options={{
+            headerShown: false,
+            title: 'Appointment Confirmation',
+          }}
+        />
+      </Stack.Navigator>
     </SafeAreaProvider>
   );
 };

@@ -10,27 +10,14 @@ import moment from 'moment';
 import * as Typography from '../constants/typography';
 import * as Colors from '../constants/colors';
 
-const RenderCard = ({
-  selectedData,
-  realData,
-  renderData,
-  timeFomat,
-  date,
-  typeCB,
-}) => {
-  const __date = moment(date).format('YYYY-MM-DD');
-  let _time = moment(__date + 'T' + renderData).format(
-    timeFomat == 12 ? 'hh:mm a' : 'HH:mm',
-  );
+const RenderCard = ({selectedData, realData, renderData}) => {
   return (
     <TouchableOpacity
       style={styles.BussinessTypeView}
       onPress={() => {
         selectedData(renderData);
       }}>
-      <Text style={styles.bussinessTypeText}>
-        {typeCB !== 'timeSlot' ? renderData.toString() : _time}
-      </Text>
+      <Text style={styles.bussinessTypeText}>{renderData.name.toString()}</Text>
       {realData == renderData ? (
         <FastImage
           source={require('../assets/green_check.png')}

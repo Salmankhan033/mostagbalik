@@ -23,6 +23,7 @@ import Button from '../../../components/Button';
 import HeaderComponent from '../../components/headerComponent';
 import ShowAlert from '../../components/ShowAlert';
 import {API} from '../../constants/helper';
+import Loader from '../../components/Spinner';
 
 const BookAppointment = props => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
@@ -30,10 +31,7 @@ const BookAppointment = props => {
   const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
   const [timeSlots, setTimeSlots] = useState([]);
 
-  console.log('SelectedTimeSlots...', JSON.stringify(selectedTimeSlot));
   useEffect(() => {
-    doFetchTimeSlots();
-
     const unsubscribe = props.navigation.addListener('focus', () => {
       doFetchTimeSlots();
     });
@@ -50,6 +48,7 @@ const BookAppointment = props => {
         .post(`${API}/timeslots`, {booking_date})
         .then(response => {
           setTimeSlots(response.data?.data?.slots);
+          setLoading(false);
 
           // console.log('Responce...', response.data.data.slots);
         })
@@ -107,6 +106,7 @@ const BookAppointment = props => {
   };
   return (
     <View style={{flex: 1, backgroundColor: Colors.White}}>
+      <Loader visible={loading} />
       <StatusBar backgroundColor={Colors.statusBar} translucent />
       <HeaderComponent
         navigation={props.navigation}
