@@ -40,12 +40,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bussinessTypeText: {
-    fontWeight: Typography.FONT_WEIGHT_BOLD,
-    color: Colors.Black,
+     color: Colors.Black,
+    fontSize: Typography.FONT_SIZE_15,
+    fontFamily:"OpenSans-Regular",
+    lineHeight:22,
   },
   checkIcon: {
-    width: wp('5%'),
-    height: wp('5%'),
+    width: wp('4.5%'),
+    height: wp('4.5%'),
+    marginEnd:10
   },
 });
 

@@ -3,6 +3,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   StatusBar,
 } from 'react-native';
 import React from 'react';
@@ -24,18 +25,19 @@ const HeaderComponent = ({Home = false, title, navigation,Drawer= false}) => {
       <View style={styles.subContainer}>
         {Home ? (
           <>
-            <TouchableOpacity
-              style={{flex: 0.33, paddingHorizontal: 5}}
+          <View style={{flex: 0.33, paddingHorizontal: 5}}>
+            <TouchableWithoutFeedback
               onPress={() => navigation.openDrawer()}>
               <FastImage
                 source={require('../assets/left_men.png')}
                 style={{height: 21, width: 28}}
               />
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
+            </View>
             <View style={{flex: 0.67}}>
               <FastImage
                 source={require('../assets/logo.png')}
-                style={{height: 25, width: 123, marginTop:15}}
+                style={{height: 25, width: 125, marginTop:15}}
               />
             </View>
           </>

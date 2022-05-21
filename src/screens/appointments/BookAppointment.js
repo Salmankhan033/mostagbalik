@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
   BottomContainer: {
     width: wp('92%'),
     alignSelf: 'center',
+    marginTop:"9%",
   },
   btnContainer: {
     paddingHorizontal: 15,

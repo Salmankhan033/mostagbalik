@@ -9,12 +9,12 @@ import {useTranslation} from 'react-i18next';
 import * as Typography from './../src/constants/typography';
 import * as Colors from './../src/constants/colors';
 
-const SwiperComponent = () => {
+const SwiperComponent = ({image}) => {
   const {t, i18n} = useTranslation();
   return (
     // <SafeAreaView>
     <View style={{backgroundColor: Colors.White}}>
-      <FastImage style={styles.img} source={require('./../src/assets/1.png')} />
+      <FastImage style={styles.img} source={image} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{t('common:Educational_Consultancy')}</Text>
       </View>

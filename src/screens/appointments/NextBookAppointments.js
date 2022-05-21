@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     height: hp('4%'),
-    fontSize: Typography.FONT_SIZE_16,
+    fontSize: Typography.FONT_SIZE_14,
     color: Colors.text,
     fontFamily: 'OpenSans-Medium',
     textAlignVertical: 'center',
